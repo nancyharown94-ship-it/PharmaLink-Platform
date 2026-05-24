@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PharmaLink - تسجيل الدخول</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #3f00e7;
+        --primary-light: #5d25fa;
+        --accent: #e91e63;
+        --bg: #f4f6f9;
+        --card: #ffffff;
+        --text: #1a1a24;
+        --muted: #7c7c8c;
+        --border: #eef0f4;
+        --success: #34c759;
+        --danger: #ff3b30;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Cairo", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #f0f4ff 0%,
+          #e8f0fe 50%,
+          #f3e8ff 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        transition: background 0.3s;
+      }
+
+      /* ─── Logo Animations ─── */
+      .orbit-ring {
+        transform-origin: 100px 110px;
+        animation: rotateRing 5s linear infinite;
+      }
+
+      @keyframes rotateRing {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .pill-group {
+        animation: pillPulse 3s ease-in-out infinite;
+        transform-origin: 100px 100px;
+      }
+
+      @keyframes pillPulse {
+        0%,
+        100% {
+          filter: brightness(1) drop-shadow(0 4px 12px rgba(104, 70, 240, 0.4));
+        }
+        50% {
+          filter: brightness(1.2)
+            drop-shadow(0 4px 28px rgba(143, 123, 255, 0.8));
+        }
+      }
+
+      /* ─── Top Bar ─── */
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 40px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        z-index: 100;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+
+      .logo-area i {
+        font-size: 1.4rem;
+      }
+
+      .top-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      .icon-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--card);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+
+      .icon-btn:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      /* ─── Main Container ─── */
+      .auth-wrapper {
+        margin-top: 70px;
+        width: 100%;
+        max-width: 1000px;
+        background: var(--card);
+        border-radius: 32px;
+        box-shadow: 0 30px 80px rgba(63, 0, 231, 0.15);
+        position: relative;
+        overflow: hidden;
+        min-height: 600px;
+      }
+
+      /* ─── Forms Side ─── */
+      .forms-side {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .form-panel {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        padding: 40px 48px;
+        overflow-y: auto;
+        transition: all 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+      }
+
+      /* Normal State: Sign In is on the Right */
+      .form-panel.sign-in {
+        right: 0;
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 2;
+      }
+
+      /* Normal State: Sign Up is on the Left (hidden) */
+      .form-panel.sign-up {
+        left: 0;
+        transform: translateX(-50px);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* show-signup State: Sign In moves right out of view */
+      .auth-wrapper.show-signup .form-panel.sign-in {
+        transform: translateX(50px);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* show-signup State: Sign Up moves into view on the Left */
+      .auth-wrapper.show-signup .form-panel.sign-up {
+        transform: translateX(0);
+        opacity: 1;
+        z-index: 2;
+        pointer-events: auto;
+      }
+
+      .form-panel h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+
+      .form-panel .subtitle {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      /* ─── Role Toggle ─── */
+      .role-toggle {
+        display: inline-flex;
+        background: #f1f5f9;
+        padding: 4px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+      }
+
+      .role-toggle button {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 10px 24px;
+        font-family: "Cairo", sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted);
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .role-toggle button.active {
+        background: white;
+        color: var(--primary);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      /* ─── Inputs ─── */
+      .input-group {
+        position: relative;
+        margin-bottom: 14px;
+      }
+
+      .input-group i {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--muted);
+        font-size: 16px;
+        pointer-events: none;
+      }
+
+      .input-group.textarea-group i {
+        top: 18px;
+        transform: none;
+      }
+
+      .auth-input,
+      .auth-select,
+      .auth-textarea {
+        width: 100%;
+        padding: 13px 44px 13px 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 14px;
+        font-size: 14px;
+        font-family: "Cairo", sans-serif;
+        background: #f8faff;
+        color: var(--text);
+        outline: none;
+        transition: all 0.2s;
+        appearance: none;
+      }
+
+      .auth-input:focus,
+      .auth-select:focus,
+      .auth-textarea:focus {
+        border-color: var(--primary);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(63, 0, 231, 0.1);
+      }
+
+      .auth-textarea {
+        resize: none;
+        padding: 13px 44px 13px 16px;
+        min-height: 80px;
+      }
+
+      .auth-select {
+        cursor: pointer;
+      }
+
+      /* Pharmacy extra section */
+      .section-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--primary);
+        margin: 16px 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .section-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(63, 0, 231, 0.15);
+      }
+
+      #pharmacyExtraFields {
+        display: none;
+      }
+
+      .row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      /* Options row */
+      .options-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 6px 0 18px;
+        font-size: 13px;
+      }
+
+      .remember-me {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .remember-me input {
+        accent-color: var(--primary);
+        cursor: pointer;
+      }
+
+      .forgot-link {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      .forgot-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Buttons */
+      .btn-auth {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-light)
+        );
+        color: white;
+        font-weight: 800;
+        font-size: 15px;
+        font-family: "Cairo", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 6px 20px rgba(63, 0, 231, 0.3);
+        margin-top: 4px;
+      }
+
+      .btn-auth:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(63, 0, 231, 0.4);
+      }
+
+      .btn-auth:active {
+        transform: translateY(0);
+      }
+
+      .guest-link {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 13px;
+      }
+
+      .guest-link a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .guest-link a:hover {
+        color: var(--primary);
+      }
+
+      /* ─── Overlay Side ─── */
+      .overlay-side {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          #7b2ff7 60%,
+          var(--accent) 100%
+        );
+        z-index: 10;
+        /* Triangle/diagonal cut: overlay covers the left side */
+        clip-path: polygon(0 0, 52% 0, 38% 100%, 0 100%);
+        transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+        display: flex;
+        overflow: hidden;
+      }
+
+      /* When show-signup: overlay covers the right side */
+      .auth-wrapper.show-signup .overlay-side {
+        clip-path: polygon(62% 0, 100% 0, 100% 100%, 48% 100%);
+      }
+
+      .overlay-side::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: transform 0.7s ease;
+      }
+
+      .overlay-side::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        right: -40px;
+        width: 260px;
+        height: 260px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
+        transition: transform 0.7s ease;
+      }
+
+      .auth-wrapper.show-signup .overlay-side::before {
+        transform: translate(100px, 50px);
+      }
+
+      .auth-wrapper.show-signup .overlay-side::after {
+        transform: translate(-100px, -50px);
+      }
+
+      .overlay-panel {
+        position: absolute;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        text-align: center;
+        transition:
+          transform 0.7s cubic-bezier(0.77, 0, 0.175, 1),
+          opacity 0.7s ease;
+        z-index: 2;
+      }
+
+      /* Left Panel (Visible when overlay is on the left) */
+      .overlay-left {
+        left: 0;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .auth-wrapper.show-signup .overlay-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        pointer-events: none;
+      }
+
+      /* Right Panel (Visible when overlay is on the right) */
+      .overlay-right {
+        right: 0;
+        opacity: 0;
+        transform: translateX(50px);
+        pointer-events: none;
+      }
+
+      .auth-wrapper.show-signup .overlay-right {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+      }
+
+      .overlay-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        margin: 0 auto 24px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .overlay-panel h2 {
+        color: white;
+        font-size: 1.7rem;
+        font-weight: 800;
+        margin-bottom: 14px;
+      }
+
+      .overlay-panel p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 32px;
+      }
+
+      .btn-ghost {
+        padding: 12px 32px;
+        border-radius: 30px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        background: transparent;
+        color: white;
+        font-family: "Cairo", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      /* ─── Toast ─── */
+      .modern-toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--success);
+        color: white;
+        padding: 14px 22px;
+        border-radius: 14px;
+        font-size: 14px;
+        font-weight: 700;
+        box-shadow: 0 8px 25px rgba(52, 199, 89, 0.4);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .modern-toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .modern-toast.error {
+        background: var(--danger);
+        box-shadow: 0 8px 25px rgba(255, 59, 48, 0.4);
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 768px) {
+        .auth-wrapper {
+          flex-direction: column-reverse;
+          min-height: auto;
+          display: flex;
+          overflow: visible;
+        }
+
+        .forms-side {
+          position: relative;
+          width: 100%;
+          min-height: 520px;
+        }
+
+        .form-panel {
+          width: 100%;
+          padding: 28px 24px;
+        }
+
+        .form-panel.sign-in {
+          transform: translateX(0);
+          opacity: 1;
+          z-index: 2;
+        }
+
+        .form-panel.sign-up {
+          transform: translateX(-100%);
+          opacity: 0;
+          z-index: 1;
+        }
+
+        .auth-wrapper.show-signup .form-panel.sign-in {
+          transform: translateX(100%);
+          opacity: 0;
+          z-index: 1;
+        }
+
+        .auth-wrapper.show-signup .form-panel.sign-up {
+          transform: translateX(0);
+          opacity: 1;
+          z-index: 2;
+        }
+
+        .overlay-side {
+          position: relative;
+          width: 100%;
+          min-height: 280px;
+          clip-path: none !important;
+          display: block;
+          border-radius: 32px 32px 0 0;
+        }
+
+        .overlay-panel {
+          width: 100%;
+          padding: 32px 24px;
+        }
+
+        .overlay-left {
+          transform: translateX(0);
+        }
+
+        .auth-wrapper.show-signup .overlay-left {
+          transform: translateX(-100%);
+        }
+
+        .overlay-right {
+          transform: translateX(100%);
+        }
+
+        .auth-wrapper.show-signup .overlay-right {
+          transform: translateX(0);
+        }
+
+        .row-2 {
+          grid-template-columns: 1fr;
+        }
+
+        .top-bar {
+          padding: 12px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top-bar">
+      <div class="logo-area">
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+        >
+          <defs>
+            <radialGradient id="spl-pillGrad-auth" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#d5c0ff" />
+              <stop offset="45%" stop-color="#8f7bff" />
+              <stop offset="100%" stop-color="#6846f0" />
+            </radialGradient>
+            <linearGradient
+              id="spl-pillShine-auth"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+              <stop offset="60%" stop-color="rgba(255,255,255,0)" />
+            </linearGradient>
+            <linearGradient
+              id="spl-ringGrad-auth"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stop-color="#a89cff" />
+              <stop offset="50%" stop-color="#6d4bff" />
+              <stop offset="100%" stop-color="#d4c2ff" />
+            </linearGradient>
+            <radialGradient id="spl-sphereGrad-auth" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#f3e4ff" />
+              <stop offset="50%" stop-color="#8f7bff" />
+              <stop offset="100%" stop-color="#5e3cff" />
+            </radialGradient>
+            <linearGradient
+              id="spl-leafGrad-auth"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stop-color="rgba(171,146,255,0.34)" />
+              <stop offset="100%" stop-color="rgba(111,85,255,0)" />
+            </linearGradient>
+            <filter id="spl-glow-auth">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <g class="pill-group">
+            <rect
+              x="60"
+              y="60"
+              width="80"
+              height="100"
+              rx="40"
+              ry="40"
+              fill="url(#spl-pillGrad-auth)"
+              filter="url(#spl-glow-auth)"
+            />
+            <rect
+              x="60"
+              y="60"
+              width="80"
+              height="100"
+              rx="40"
+              ry="40"
+              fill="url(#spl-pillShine-auth)"
+              opacity="0.7"
+            />
+            <path
+              d="M60,110 Q55,80 80,65 Q65,90 70,110 Z"
+              fill="url(#spl-leafGrad-auth)"
+              opacity="0.6"
+            />
+            <path
+              d="M140,110 Q145,80 120,65 Q135,90 130,110 Z"
+              fill="url(#spl-leafGrad-auth)"
+              opacity="0.4"
+            />
+            <line
+              x1="60"
+              y1="110"
+              x2="140"
+              y2="110"
+              stroke="rgba(255,255,255,0.35)"
+              stroke-width="1.5"
+            />
+            <rect
+              x="91"
+              y="78"
+              width="18"
+              height="44"
+              rx="4"
+              fill="white"
+              opacity="0.95"
+            />
+            <rect
+              x="78"
+              y="91"
+              width="44"
+              height="18"
+              rx="4"
+              fill="white"
+              opacity="0.95"
+            />
+          </g>
+          <g class="orbit-ring">
+            <ellipse
+              cx="100"
+              cy="115"
+              rx="60"
+              ry="20"
+              fill="none"
+              stroke="url(#spl-ringGrad-auth)"
+              stroke-width="7"
+              stroke-dasharray="94 94"
+              stroke-dashoffset="0"
+              opacity="0.5"
+            />
+            <ellipse
+              cx="100"
+              cy="115"
+              rx="60"
+              ry="20"
+              fill="none"
+              stroke="url(#spl-ringGrad-auth)"
+              stroke-width="7"
+              stroke-dasharray="94 94"
+              stroke-dashoffset="94"
+              filter="url(#spl-glow-auth)"
+            />
+          </g>
+          <circle
+            cx="158"
+            cy="72"
+            r="14"
+            fill="url(#spl-sphereGrad-auth)"
+            filter="url(#spl-glow-auth)"
+          />
+          <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)" />
+        </svg>
+        <span style="font-size: 1.2rem; font-weight: 800; color: var(--primary)"
+          >PharmaLink</span
+        >
+      </div>
+      <div class="top-actions">
+        <button
+          class="icon-btn"
+          id="lang-btn"
+          onclick="toggleLang()"
+          title="Language"
+        >
+          <i class="fas fa-globe"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="auth-wrapper" id="authWrapper">
+      <!-- Forms Side -->
+      <div class="forms-side">
+        <!-- Sign In -->
+        <div class="form-panel sign-in" id="signInPanel">
+          <div class="role-toggle">
+            <button
+              type="button"
+              class="role-btn patient-btn"
+              onclick="setRole('Patient')"
+            >
+              <i class="fas fa-user"></i> <span class="txt-patient">مريض</span>
+            </button>
+            <button
+              type="button"
+              class="role-btn pharmacy-btn"
+              onclick="setRole('Pharmacy')"
+            >
+              <i class="fas fa-clinic-medical"></i>
+              <span class="txt-pharmacy">صيدلية</span>
+            </button>
+          </div>
+          <h2 id="loginTitle">تسجيل الدخول</h2>
+          <p class="subtitle" data-lang="loginSub">
+            مرحباً بعودتك! أدخل بياناتك للمتابعة
+          </p>
+          <form id="signInForm">
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                class="auth-input"
+                id="loginEmail"
+                name="email"
+                placeholder="البريد الإلكتروني"
+                data-lang-ph="phEmail"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                class="auth-input"
+                id="loginPass"
+                name="password"
+                placeholder="كلمة المرور"
+                data-lang-ph="phPass"
+                required
+              />
+            </div>
+            <div class="options-row">
+              <label class="remember-me"
+                ><input type="checkbox" />
+                <span data-lang="txtRemember">تذكرني</span></label
+              >
+              <a href="#" class="forgot-link" data-lang="txtForgot"
+                >نسيت كلمة المرور؟</a
+              >
+            </div>
+            <button type="submit" class="btn-auth" id="loginBtn">دخول</button>
+            <div class="guest-link">
+              <a href="#" id="guestBtn">المتابعة كزائر ←</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sign Up -->
+        <div class="form-panel sign-up" id="signUpPanel">
+          <div class="role-toggle">
+            <button
+              type="button"
+              class="role-btn patient-btn"
+              onclick="setRole('Patient')"
+            >
+              <i class="fas fa-user-plus"></i>
+              <span class="txt-patient">مريض</span>
+            </button>
+            <button
+              type="button"
+              class="role-btn pharmacy-btn"
+              onclick="setRole('Pharmacy')"
+            >
+              <i class="fas fa-clinic-medical"></i>
+              <span class="txt-pharmacy">صيدلية</span>
+            </button>
+          </div>
+          <h2 id="registerTitle">إنشاء حساب</h2>
+          <p class="subtitle" data-lang="regSub">
+            انضم إلينا وابدأ رحلتك مع PharmaLink
+          </p>
+          <form id="signUpForm">
+            <!-- Common Fields -->
+            <div class="row-2">
+              <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  class="auth-input"
+                  name="name"
+                  placeholder="الاسم الكامل"
+                  data-lang-ph="phName"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <i class="fas fa-id-card"></i>
+                <input
+                  type="text"
+                  class="auth-input"
+                  name="nationalId"
+                  placeholder="الرقم القومي"
+                  data-lang-ph="phNatId"
+                  required
+                  maxlength="14"
+                />
+              </div>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                class="auth-input"
+                name="email"
+                placeholder="البريد الإلكتروني"
+                data-lang-ph="phEmail"
+                required
+              />
+            </div>
+            <div class="row-2">
+              <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  class="auth-input"
+                  name="password"
+                  placeholder="كلمة المرور"
+                  data-lang-ph="phPass"
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  class="auth-input"
+                  name="confirmPassword"
+                  placeholder="تأكيد كلمة المرور"
+                  data-lang-ph="phPassConfirm"
+                  required
+                />
+              </div>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-map-marker-alt"></i>
+              <input
+                type="text"
+                class="auth-input"
+                name="address"
+                placeholder="العنوان"
+                data-lang-ph="phAddress"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <i class="fas fa-phone"></i>
+              <input
+                type="tel"
+                class="auth-input"
+                name="phone"
+                placeholder="رقم الهاتف"
+                data-lang-ph="phPhone"
+                required
+              />
+            </div>
+
+            <!-- Pharmacy Extra Fields -->
+            <div id="pharmacyExtraFields">
+              <div class="section-title">
+                <i class="fas fa-clinic-medical"></i>
+                <span data-lang="txtPharmData">بيانات الصيدلية</span>
+              </div>
+              <div class="row-2">
+                <div class="input-group">
+                  <i class="fas fa-file-medical"></i>
+                  <input
+                    type="text"
+                    class="auth-input"
+                    id="licenseNum"
+                    name="licenseNum"
+                    placeholder="رقم الرخصة"
+                    data-lang-ph="phLicense"
+                  />
+                </div>
+                <div class="input-group">
+                  <i class="fas fa-store"></i>
+                  <input
+                    type="text"
+                    class="auth-input"
+                    id="pharmacyName"
+                    name="pharmacyName"
+                    placeholder="اسم الصيدلية"
+                    data-lang-ph="phPharmName"
+                  />
+                </div>
+              </div>
+              <div class="input-group">
+                <i class="fas fa-map-marker-alt"></i>
+                <input
+                  type="text"
+                  class="auth-input"
+                  id="pharmacyAddress"
+                  name="pharmacyAddress"
+                  placeholder="عنوان الصيدلية"
+                  data-lang-ph="phPharmAddress"
+                />
+              </div>
+              <div class="input-group">
+                <i class="fas fa-hospital"></i>
+                <select
+                  class="auth-select auth-input"
+                  id="pharmacyType"
+                  name="pharmacyType"
+                >
+                  <option value="" disabled selected data-lang="phPharmType">
+                    نوع الصيدلية
+                  </option>
+                  <option value="private" data-lang="optPrivate">
+                    صيدلية خاصة
+                  </option>
+                  <option value="hospital" data-lang="optHospital">
+                    صيدلية مستشفى خاصة
+                  </option>
+                  <option value="insurance" data-lang="optInsurance">
+                    تابعة للتأمين الصحي
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-auth" id="registerBtn">
+              إنشاء الحساب
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Overlay Side -->
+      <div class="overlay-side">
+        <div class="overlay-panel overlay-left">
+          <div class="overlay-icon">
+            <i class="fas fa-user-circle" id="overlayIconLeft"></i>
+          </div>
+          <h2 id="overlaySignInTitle">مرحباً بك في PharmaLink</h2>
+          <p id="overlaySignInText">سجل الآن واطلب أدويتك من أقرب صيدلية</p>
+          <button
+            class="btn-ghost"
+            onclick="togglePanel()"
+            id="overlaySignInBtn"
+          >
+            إنشاء حساب
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <div class="overlay-icon">
+            <i class="fas fa-clinic-medical" id="overlayIconRight"></i>
+          </div>
+          <h2 id="overlaySignUpTitle">مرحباً بعودتك!</h2>
+          <p id="overlaySignUpText">ادخل للمتابعة إلى حسابك في PharmaLink</p>
+          <button
+            class="btn-ghost"
+            onclick="togglePanel()"
+            id="overlaySignUpBtn"
+          >
+            تسجيل الدخول
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      let currentRole = localStorage.getItem("selectedRole") || "Patient";
+      let isPharmacy = currentRole === "Pharmacy";
+      let currentLang = localStorage.getItem("appLang") || "ar";
+      let showingSignup = false;
+
+      function getTexts() {
+        return {
+          ar: {
+            rolePatient: "مريض",
+            rolePharmacy: "صيدلية",
+            loginTitle: "تسجيل الدخول",
+            loginSub: "مرحباً بعودتك! أدخل بياناتك للمتابعة",
+            registerTitle: isPharmacy ? "إنشاء حساب صيدلية" : "إنشاء حساب مريض",
+            regSub: "انضم إلينا وابدأ رحلتك مع PharmaLink",
+            loginBtn: "دخول",
+            registerBtn: "إنشاء الحساب",
+            overlayLoginH: "مرحباً بعودتك!",
+            overlayLoginP: "ادخل للمتابعة إلى حسابك في PharmaLink",
+            overlayLoginBtn: "تسجيل الدخول",
+            overlayRegisterH: "مرحباً بك في PharmaLink",
+            overlayRegisterP: isPharmacy
+              ? "أنضم الآن وإدر صيدليتك بسهولة ويسر"
+              : "سجل الآن واطلب أدويتك من أقرب صيدلية",
+            overlayRegisterBtn: "إنشاء حساب",
+            successLogin: "✅ تم تسجيل الدخول بنجاح",
+            successRegister: "✅ تم إنشاء الحساب بنجاح",
+            guest: "المتابعة كزائر ←",
+            phEmail: "البريد الإلكتروني",
+            phPass: "كلمة المرور",
+            phName: "الاسم الكامل",
+            phNatId: "الرقم القومي",
+            phPassConfirm: "تأكيد كلمة المرور",
+            phAddress: "العنوان",
+            phPhone: "رقم الهاتف",
+            phLicense: "رقم الرخصة",
+            phPharmName: "اسم الصيدلية",
+            phPharmAddress: "عنوان الصيدلية",
+            phPharmType: "نوع الصيدلية",
+            txtRemember: "تذكرني",
+            txtForgot: "نسيت كلمة المرور؟",
+            txtPharmData: "بيانات الصيدلية",
+            optPrivate: "صيدلية خاصة",
+            optHospital: "صيدلية مستشفى خاصة",
+            optInsurance: "تابعة للتأمين الصحي",
+          },
+          en: {
+            rolePatient: "Patient",
+            rolePharmacy: "Pharmacy",
+            loginTitle: "Sign In",
+            loginSub: "Welcome back! Enter your details to continue",
+            registerTitle: isPharmacy
+              ? "Create Pharmacy Account"
+              : "Create Patient Account",
+            regSub: "Join us and start your journey with PharmaLink",
+            loginBtn: "Sign In",
+            registerBtn: "Create Account",
+            overlayLoginH: "Welcome Back!",
+            overlayLoginP: "Sign in to continue to your PharmaLink account",
+            overlayLoginBtn: "Sign In",
+            overlayRegisterH: "Hello, Friend!",
+            overlayRegisterP: isPharmacy
+              ? "Join now and manage your pharmacy easily"
+              : "Register now and order from nearest pharmacy",
+            overlayRegisterBtn: "Create Account",
+            successLogin: "✅ Logged in successfully",
+            successRegister: "✅ Account created successfully",
+            guest: "Continue as Guest →",
+            phEmail: "Email Address",
+            phPass: "Password",
+            phName: "Full Name",
+            phNatId: "National ID",
+            phPassConfirm: "Confirm Password",
+            phAddress: "Address",
+            phPhone: "Phone Number",
+            phLicense: "License Number",
+            phPharmName: "Pharmacy Name",
+            phPharmAddress: "Pharmacy Address",
+            phPharmType: "Pharmacy Type",
+            txtRemember: "Remember me",
+            txtForgot: "Forgot Password?",
+            txtPharmData: "Pharmacy Data",
+            optPrivate: "Private Pharmacy",
+            optHospital: "Private Hospital Pharmacy",
+            optInsurance: "Health Insurance Pharmacy",
+          },
+        };
+      }
+
+      function applyTexts() {
+        const t = getTexts()[currentLang];
+        document.getElementById("loginTitle").textContent = t.loginTitle;
+        document.getElementById("registerTitle").textContent = t.registerTitle;
+        document.getElementById("loginBtn").textContent = t.loginBtn;
+        document.getElementById("registerBtn").textContent = t.registerBtn;
+        document.getElementById("guestBtn").textContent = t.guest;
+        document.documentElement.lang = currentLang;
+        document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+
+        document
+          .querySelectorAll(".txt-patient")
+          .forEach((el) => (el.textContent = t.rolePatient));
+        document
+          .querySelectorAll(".txt-pharmacy")
+          .forEach((el) => (el.textContent = t.rolePharmacy));
+
+        document.querySelectorAll("[data-lang]").forEach((el) => {
+          const key = el.getAttribute("data-lang");
+          if (t[key]) el.textContent = t[key];
+        });
+        document.querySelectorAll("[data-lang-ph]").forEach((el) => {
+          const key = el.getAttribute("data-lang-ph");
+          if (t[key]) el.placeholder = t[key];
+        });
+
+        updateOverlay();
+      }
+
+      function updateOverlay() {
+        const t = getTexts()[currentLang];
+        const overlayIcon = isPharmacy ? "fa-clinic-medical" : "fa-user-circle";
+
+        // Update Left Overlay (Register side)
+        const iconLeft = document.getElementById("overlayIconLeft");
+        if (iconLeft) iconLeft.className = "fas " + overlayIcon;
+        const signInTitle = document.getElementById("overlaySignInTitle");
+        if (signInTitle) signInTitle.textContent = t.overlayRegisterH;
+        const signInText = document.getElementById("overlaySignInText");
+        if (signInText) signInText.textContent = t.overlayRegisterP;
+        const signInBtn = document.getElementById("overlaySignInBtn");
+        if (signInBtn) signInBtn.textContent = t.overlayRegisterBtn;
+
+        // Update Right Overlay (Sign In side)
+        const iconRight = document.getElementById("overlayIconRight");
+        if (iconRight) iconRight.className = "fas fa-door-open"; // generic login icon
+        const signUpTitle = document.getElementById("overlaySignUpTitle");
+        if (signUpTitle) signUpTitle.textContent = t.overlayLoginH;
+        const signUpText = document.getElementById("overlaySignUpText");
+        if (signUpText) signUpText.textContent = t.overlayLoginP;
+        const signUpBtn = document.getElementById("overlaySignUpBtn");
+        if (signUpBtn) signUpBtn.textContent = t.overlayLoginBtn;
+      }
+
+      function togglePanel() {
+        showingSignup = !showingSignup;
+        document
+          .getElementById("authWrapper")
+          .classList.toggle("show-signup", showingSignup);
+        updateOverlay();
+      }
+
+      function toggleLang() {
+        currentLang = currentLang === "ar" ? "en" : "ar";
+        localStorage.setItem("appLang", currentLang);
+        applyTexts();
+      }
+
+      function showToast(msg, type = "success") {
+        const t = document.createElement("div");
+        t.className = `modern-toast ${type}`;
+        t.innerHTML = `<i class="fas fa-${type === "success" ? "check-circle" : "times-circle"}"></i> ${msg}`;
+        document.body.appendChild(t);
+        setTimeout(() => t.classList.add("show"), 10);
+        setTimeout(() => {
+          t.classList.remove("show");
+          setTimeout(() => t.remove(), 300);
+        }, 3000);
+      }
+
+      function setRole(role) {
+        currentRole = role;
+        isPharmacy = role === "Pharmacy";
+        localStorage.setItem("selectedRole", role);
+
+        document
+          .querySelectorAll(".role-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        document
+          .querySelectorAll(isPharmacy ? ".pharmacy-btn" : ".patient-btn")
+          .forEach((btn) => btn.classList.add("active"));
+
+        const pharmacyFields = document.getElementById("pharmacyExtraFields");
+        if (isPharmacy) {
+          pharmacyFields.style.display = "block";
+          document
+            .querySelectorAll(
+              "#pharmacyExtraFields input, #pharmacyExtraFields select",
+            )
+            .forEach((el) => (el.required = true));
+        } else {
+          pharmacyFields.style.display = "none";
+          document
+            .querySelectorAll(
+              "#pharmacyExtraFields input, #pharmacyExtraFields select",
+            )
+            .forEach((el) => (el.required = false));
+        }
+        applyTexts();
+      }
+
+      // --- إرسال الداتا للباك إند في شكل JSON ---
+
+      // 1. فورم تسجيل الدخول
+      document
+        .getElementById("signInForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const t = getTexts()[currentLang];
+
+          const formData = new FormData(e.target);
+          const data = Object.fromEntries(formData.entries());
+          data.role = currentRole; // إرسال نوع الـ role الحالي
+
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/auth/login",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              },
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+              showToast(t.successLogin);
+              if (result.token) localStorage.setItem("userToken", result.token);
+
+              setTimeout(() => {
+                window.location.href = isPharmacy
+                  ? "pharmacy-dashboard.html"
+                  : "index.html";
+              }, 1000);
+            } else {
+              showToast(
+                result.message ||
+                  (currentLang === "ar"
+                    ? "❌ خطأ في البيانات"
+                    : "❌ Invalid credentials"),
+                "error",
+              );
+            }
+          } catch (error) {
+            console.error(error);
+            showToast(
+              currentLang === "ar"
+                ? "❌ مشكلة في الاتصال بالسيرفر"
+                : "❌ Connection error",
+              "error",
+            );
+          }
+        });
+
+      // 2. فورم إنشاء الحساب
+      document
+        .getElementById("signUpForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const t = getTexts()[currentLang];
+
+          const formData = new FormData(e.target);
+          const data = Object.fromEntries(formData.entries());
+          data.role = currentRole;
+
+          // التأكد من تطابق كلمة المرور في الفرونت إند أولاً
+          if (data.password !== data.confirmPassword) {
+            showToast(
+              currentLang === "ar"
+                ? "❌ كلمات المرور غير متطابقة"
+                : "❌ Passwords do not match",
+              "error",
+            );
+            return;
+          }
+
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/auth/register",
+              {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              },
+            );
+
+            const result = await response.json();
+
+            if (response.ok) {
+              showToast(t.successRegister);
+              if (result.token) localStorage.setItem("userToken", result.token);
+              setTimeout(() => {
+                window.location.href = isPharmacy
+                  ? "pharmacy-dashboard.html"
+                  : "index.html";
+              }, 1000);
+            } else {
+              showToast(
+                result.message ||
+                  (currentLang === "ar"
+                    ? "❌ فشل إنشاء الحساب"
+                    : "❌ Registration failed"),
+                "error",
+              );
+            }
+          } catch (error) {
+            console.error(error);
+            showToast(
+              currentLang === "ar"
+                ? "❌ مشكلة في الاتصال بالسيرفر"
+                : "❌ Connection error",
+              "error",
+            );
+          }
+        });
+
+      document.getElementById("guestBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        showToast(
+          currentLang === "ar"
+            ? "👋 متابعة كزائر..."
+            : "👋 Continuing as guest...",
+        );
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1000);
+      });
+
+      // Init
+
+      setRole(currentRole); // تشغيل الإعدادات الافتراضية للـ Role عند فتح الصفحة
+    </script>
+  </body>
+</html>

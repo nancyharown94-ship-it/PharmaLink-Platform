@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Pharmacy Notifications</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pharmacy.css">
+    <style>
+        .notification-list { display: flex; flex-direction: column; gap: 16px; }
+        .notification-card { background: var(--bg-card); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; gap: 16px; align-items: flex-start; transition: all 0.2s; }
+        .notification-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .notification-card.unread { background: rgba(63, 0, 231, 0.03); border-left: 4px solid var(--primary-color); }
+        html[dir="rtl"] .notification-card.unread { border-left: none; border-right: 4px solid var(--primary-color); }
+        .notif-icon-box { width: 48px; height: 48px; border-radius: 50%; background: rgba(63, 0, 231, 0.1); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+        .notif-icon-box.success { background: rgba(52, 199, 89, 0.1); color: var(--success-color); }
+        .notif-icon-box.danger { background: rgba(255, 59, 48, 0.1); color: var(--danger-color); }
+        .notif-content { flex-grow: 1; }
+        .notif-title { font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+        .notif-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5; }
+        .notif-time { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(255,255,255,0.7)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></linearGradient><linearGradient id="mpl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad)" filter="url(#mpl-glow)"/><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillShine)" opacity="0.7"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="logo-container">
+                                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="لوحة تحكم الصيدلية" data-en="Pharmacy Dashboard">لوحة تحكم الصيدلية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="pharmacy-dashboard.html" class="nav-item ">
+                    <i class="ph ph-squares-four"></i>
+                    <span class="lang-text" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
+                </a>
+                <a href="pharmacy-orders.html" class="nav-item ">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="إدارة الطلبات" data-en="Orders Management">إدارة الطلبات</span>
+                </a>
+                <a href="pharmacy-inventory.html" class="nav-item ">
+                    <i class="ph ph-stack"></i>
+                    <span class="lang-text" data-ar="المخزون" data-en="Inventory">المخزون</span>
+                </a>
+                <a href="pharmacy-add-medicine.html" class="nav-item ">
+                    <i class="ph ph-pill"></i>
+                    <span class="lang-text" data-ar="إضافة دواء" data-en="Add Medicine">إضافة دواء</span>
+                </a>
+                <a href="pharmacy-analytics.html" class="nav-item ">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span class="lang-text" data-ar="التحليلات" data-en="Analytics">التحليلات</span>
+                </a>
+                <a href="pharmacy-notifications.html" class="nav-item active">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="pharmacy-profile.html" class="nav-item ">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" class="lang-text" data-ar="ابحث..." data-en="Search..." placeholder="ابحث...">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle" style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+
+                </div>
+            </header>
+
+            <div class="page-header flex-between mb-4">
+                <h2 class="page-title lang-text" data-ar="إشعارات الصيدلية" data-en="Pharmacy Notifications" style="margin-bottom:0;">إشعارات الصيدلية</h2>
+            </div>
+            
+            <div class="notification-list">
+                <div class="notification-card unread">
+                    <div class="notif-icon-box success"><i class="ph ph-receipt"></i></div>
+                    <div class="notif-content">
+                        <div class="notif-title lang-text" data-ar="طلب جديد #ORD-1025" data-en="New Order #ORD-1025">طلب جديد #ORD-1025</div>
+                        <div class="notif-desc lang-text" data-ar="لقد تلقيت طلباً جديداً بقيمة 240 جنيه من العميل أحمد محمد. يرجى التجهيز." data-en="You received a new order worth 240 EGP from Ahmed Mohamed. Please prepare.">لقد تلقيت طلباً جديداً بقيمة 240 جنيه من العميل أحمد محمد. يرجى التجهيز.</div>
+                        <div class="notif-time"><i class="ph ph-clock"></i> <span class="lang-text" data-ar="منذ 10 دقائق" data-en="10 minutes ago">منذ 10 دقائق</span></div>
+                    </div>
+                </div>
+                <div class="notification-card unread">
+                    <div class="notif-icon-box danger"><i class="ph ph-warning"></i></div>
+                    <div class="notif-content">
+                        <div class="notif-title lang-text" data-ar="تنبيه: نفاذ المخزون" data-en="Alert: Out of Stock">تنبيه: نفاذ المخزون</div>
+                        <div class="notif-desc lang-text" data-ar="المنتج Amoxil 500mg قد نفذ من المخزون، يرجى تحديث الكميات." data-en="The product Amoxil 500mg is out of stock, please update quantities.">المنتج Amoxil 500mg قد نفذ من المخزون، يرجى تحديث الكميات.</div>
+                        <div class="notif-time"><i class="ph ph-clock"></i> <span class="lang-text" data-ar="منذ ساعة" data-en="1 hour ago">منذ ساعة</span></div>
+                    </div>
+                </div>
+                <div class="notification-card">
+                    <div class="notif-icon-box"><i class="ph ph-package"></i></div>
+                    <div class="notif-content">
+                        <div class="notif-title lang-text" data-ar="تم استلام الطلب من المندوب" data-en="Order picked up by courier">تم استلام الطلب من المندوب</div>
+                        <div class="notif-desc lang-text" data-ar="تم تسليم الطلب رقم #ORD-1023 لمندوب التوصيل بنجاح." data-en="Order #ORD-1023 was successfully handed over to the courier.">تم تسليم الطلب رقم #ORD-1023 لمندوب التوصيل بنجاح.</div>
+                        <div class="notif-time"><i class="ph ph-clock"></i> <span class="lang-text" data-ar="أمس" data-en="Yesterday">أمس</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) return window.location.href = 'auth.html';
+
+            const parseJwt = (token) => {
+                try { return JSON.parse(atob(token.split('.')[1])); } catch (e) { return null; }
+            };
+            const decoded = parseJwt(token);
+            const pharmacyId = decoded ? decoded.id : null;
+            if (!pharmacyId) return;
+
+            const fetchNotifications = async () => {
+                try {
+                    const res = await fetch(`http://localhost:3000/api/notifications/user/${pharmacyId}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        const notifications = await res.json();
+                        renderNotifications(notifications);
+                    }
+                } catch (error) {
+                    console.error('Error fetching notifications:', error);
+                }
+            };
+
+            const renderNotifications = (notifications) => {
+                const list = document.querySelector('.notification-list');
+                list.innerHTML = '';
+                if (notifications.length === 0) {
+                    list.innerHTML = `<p style="text-align:center; color:var(--text-muted); margin-top:50px;">${currentLang === 'ar' ? 'لا توجد إشعارات جديدة' : 'No new notifications'}</p>`;
+                    return;
+                }
+                notifications.forEach(notif => {
+                    const card = document.createElement('div');
+                    card.className = `notification-card ${notif.readStatus ? '' : 'unread'}`;
+                    card.style.cursor = 'pointer';
+                    
+                    let iconClass = 'ph ph-bell';
+                    let boxClass = '';
+                    if (notif.message.includes('طلب جديد') || notif.message.includes('new order') || notif.message.includes('تلقيت')) {
+                        iconClass = 'ph ph-receipt';
+                        boxClass = '';
+                    } else if (notif.message.includes('استلم') || notif.message.includes('delivered') || notif.message.includes('نجاح')) {
+                        iconClass = 'ph ph-check-circle';
+                        boxClass = 'success';
+                    }
+
+                    const timeStr = new Date(notif.createdAt).toLocaleString(currentLang === 'ar' ? 'ar-EG' : 'en-US');
+
+                    card.innerHTML = `
+                        <div class="notif-icon-box ${boxClass}"><i class="${iconClass}"></i></div>
+                        <div class="notif-content">
+                            <div class="notif-title">${currentLang === 'ar' ? 'إشعار النظام' : 'System Notification'}</div>
+                            <div class="notif-desc" style="font-weight: ${notif.readStatus ? 'normal' : 'bold'};">${notif.message}</div>
+                            <div class="notif-time"><i class="ph ph-clock"></i> <span>${timeStr}</span></div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', async () => {
+                        if (!notif.readStatus) {
+                            try {
+                                const readRes = await fetch(`http://localhost:3000/api/notifications/${notif._id}/read`, {
+                                    method: 'PATCH',
+                                    headers: { 'Authorization': `Bearer ${token}` }
+                                });
+                                if (readRes.ok) {
+                                    card.classList.remove('unread');
+                                    card.querySelector('.notif-desc').style.fontValue = 'normal';
+                                    notif.readStatus = true;
+                                    showToast(currentLang === 'ar' ? 'تم تعيين كقروء' : 'Marked as read');
+                                }
+                            } catch (e) {
+                                console.error('Error marking as read:', e);
+                            }
+                        }
+                    });
+
+                    list.appendChild(card);
+                });
+            };
+
+            fetchNotifications();
+        });
+    </script>
+</body>
+</html>

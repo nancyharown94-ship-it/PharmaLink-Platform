@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>PharmaLink - Patient Dashboard</title>
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../CSS/style.css">
+    <!-- Font for Logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-logo">
+            <div style="background: var(--primary); padding: 6px; border-radius: 8px; display: inline-flex;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2966/2966327.png" alt="Pill" style="filter: brightness(0) invert(1);">
+            </div>
+            <span>
+                PharmaLink
+                <small>Digital Pharmacy</small>
+            </span>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <i class='bx bx-home-alt icon'></i>
+                <div class="sidebar-item-text">
+                    <span>Home</span>
+                    <span class="arabic">الرئيسية</span>
+                </div>
+            </li>
+            <li class="sidebar-item">
+                <i class='bx bx-search icon'></i>
+                <div class="sidebar-item-text">
+                    <span>Search</span>
+                    <span class="arabic">بحث</span>
+                </div>
+            </li>
+            <li class="sidebar-item">
+                <i class='bx bx-cart icon'></i>
+                <div class="sidebar-item-text">
+                    <span>Cart</span>
+                    <span class="arabic">السلة</span>
+                </div>
+            </li>
+            <li class="sidebar-item">
+                <i class='bx bx-package icon'></i>
+                <div class="sidebar-item-text">
+                    <span>Orders</span>
+                    <span class="arabic">طلباتي</span>
+                </div>
+            </li>
+            <li class="sidebar-item active">
+                <i class='bx bx-user icon'></i>
+                <div class="sidebar-item-text">
+                    <span>Profile</span>
+                    <span class="arabic">الملف الشخصي</span>
+                </div>
+            </li>
+        </ul>
+
+        <div style="flex: 1;"></div>
+
+        <div class="sidebar-footer">
+            <li class="sidebar-item" style="color: var(--text-muted);">
+                <i class='bx bx-log-out icon'></i>
+                <div class="sidebar-item-text">
+                    <span>Logout</span>
+                </div>
+            </li>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="search-bar">
+                <i class='bx bx-search'></i>
+                <input type="text" placeholder="...ابحث عن دواء، صيدلية" dir="rtl">
+            </div>
+
+            <div class="header-actions">
+                <div class="notifications">
+                    <i class='bx bx-bell'></i>
+                </div>
+                <div class="user-profile">
+                    <div class="info">
+                        <div class="name">Mohamed Mbappe</div>
+                        <div class="role">Patient</div>
+                    </div>
+                    <div class="avatar">
+                        <i class='bx bx-user'></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-container">
+            <h2 class="page-title arabic-text text-right" style="margin-bottom: 8px;">مرحباً بك، Mohamed 👋</h2>
+            <p class="text-right text-muted mb-4 arabic-text" style="color: var(--text-muted); font-family: var(--font-heading);">لم تتناول بعض أدويتك اليوم، لا تنسى مواعيدها.</p>
+            
+            <div class="grid-2 mt-4">
+                <div class="card" style="display: flex; align-items: center; gap: 20px;">
+                    <div style="background: var(--primary-light); color: var(--primary); padding: 16px; border-radius: 12px; font-size: 24px;">
+                        <i class='bx bx-package'></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 24px; color: var(--text-main);">12</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; font-family: var(--font-heading);">الطلبات السابقة</p>
+                    </div>
+                </div>
+
+                <div class="card" style="display: flex; align-items: center; gap: 20px;">
+                    <div style="background: #fff8e5; color: #d9a000; padding: 16px; border-radius: 12px; font-size: 24px;">
+                        <i class='bx bx-time'></i>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 24px; color: var(--text-main);">2</h3>
+                        <p style="color: var(--text-muted); font-size: 14px; font-family: var(--font-heading);">طلبات قيد التنفيذ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2 mt-4">
+                <!-- Recent Orders -->
+                <div class="card">
+                    <div class="flex justify-between items-center mb-4">
+                        <a href="#" style="color: var(--primary); font-size: 14px; font-family: var(--font-heading);">عرض الكل</a>
+                        <h3 class="arabic-text" style="font-size: 18px;">أحدث الطلبات</h3>
+                    </div>
+                    
+                    <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px;">
+                        <div class="flex justify-between items-center">
+                            <span class="badge badge-warning">قيد التجهيز</span>
+                            <div class="text-right">
+                                <h4 style="color: var(--text-main); font-family: var(--font-body);">#ORD-002</h4>
+                                <span style="font-size: 12px; color: var(--text-muted);">11:15 AM - 2024-03-11</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <a href="Orders Tracking Page.html" class="btn btn-primary" style="padding: 6px 16px; font-size: 13px;">تتبع الطلب</a>
+                            <span style="font-weight: 700; color: var(--primary);">85 ريال</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <span class="badge badge-success">مكتمل</span>
+                            <div class="text-right">
+                                <h4 style="color: var(--text-main); font-family: var(--font-body);">#ORD-003</h4>
+                                <span style="font-size: 12px; color: var(--text-muted);">09:45 AM - 2024-03-11</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="btn btn-outline" style="padding: 6px 16px; font-size: 13px;">إعادة الطلب</button>
+                            <span style="font-weight: 700; color: var(--primary);">230 ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reminders -->
+                <div class="card" style="background: linear-gradient(135deg, var(--primary), #6343f7); color: white;">
+                    <div class="flex justify-between items-center mb-4">
+                        <i class='bx bx-bell' style="font-size: 24px;"></i>
+                        <h3 class="arabic-text" style="font-size: 18px;">مذكر الأدوية</h3>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 12px; padding: 16px; margin-bottom: 12px;">
+                        <div class="flex justify-between items-center">
+                            <span style="background: white; color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;">12:00 PM</span>
+                            <h4 class="arabic-text" style="margin: 0;">Panadol Extra</h4>
+                        </div>
+                        <p class="arabic-text text-right mt-4" style="font-size: 13px; opacity: 0.9;">حبة واحدة بعد الغداء</p>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.15); border-radius: 12px; padding: 16px;">
+                        <div class="flex justify-between items-center">
+                            <span style="background: white; color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;">08:00 PM</span>
+                            <h4 class="arabic-text" style="margin: 0;">Vitamin C 1000mg</h4>
+                        </div>
+                        <p class="arabic-text text-right mt-4" style="font-size: 13px; opacity: 0.9;">قرص فوار في كوب ماء</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script to highlight active page -->
+    <script>
+        document.querySelectorAll('.sidebar-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

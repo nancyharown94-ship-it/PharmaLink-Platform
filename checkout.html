@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Checkout</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .checkout-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .checkout-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 16px;
+        }
+        .section-title i {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .info-box {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(63,0,231,0.08);
+            color: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .info-content h4 {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .info-content p {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        .order-summary {
+            background: linear-gradient(135deg, rgba(63,0,231,0.05) 0%, rgba(104,70,240,0.05) 100%);
+            border: 2px solid rgba(63,0,231,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .summary-label {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .summary-total {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        .confirm-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(63,0,231,0.25);
+        }
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(63,0,231,0.35);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(255,255,255,0.7)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></linearGradient><linearGradient id="mpl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad)" filter="url(#mpl-glow)"/><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillShine)" opacity="0.7"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="صيدلية رقمية" data-en="Digital Pharmacy">صيدلية رقمية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="ph ph-house"></i>
+                    <span class="lang-text" data-ar="الرئيسية" data-en="Home">الرئيسية</span>
+                </a>
+                <a href="search.html" class="nav-item">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <span class="lang-text" data-ar="بحث" data-en="Search">بحث</span>
+                </a>
+                <a href="cart.html" class="nav-item active">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="lang-text" data-ar="السلة" data-en="Cart">السلة</span>
+                </a>
+                <a href="Orders Tracking Page.html" class="nav-item">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="طلباتي" data-en="Orders">طلباتي</span>
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="Profile Page.html" class="nav-item">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top" style="visibility: hidden;">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle" style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+
+                </div>
+            </header>
+
+            <div class="page-header mb-4" style="display: flex; align-items: center; gap: 16px;">
+                <button class="back-btn" onclick="history.back()" style="background: var(--bg-card); border: 1px solid var(--border-color); width: 44px; height: 44px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: all 0.2s;">
+                    <i class="ph ph-arrow-right" style="font-size: 20px;"></i>
+                </button>
+                <h2 class="page-title lang-text" data-ar="إتمام الطلب" data-en="Checkout" style="margin: 0;">إتمام الطلب</h2>
+            </div>
+
+            <div class="checkout-container">
+                <div class="checkout-card">
+                    <h3 class="section-title">
+                        <i class="ph-fill ph-check-circle"></i>
+                        <span class="lang-text" data-ar="مراجعة بيانات الطلب" data-en="Review Order Details">مراجعة بيانات الطلب</span>
+                    </h3>
+
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <div class="info-icon">
+                                <i class="ph ph-user"></i>
+                            </div>
+                            <div class="info-content" style="width: 100%;">
+                                <h4 class="lang-text" data-ar="اسم المريض" data-en="Patient Name">اسم المريض</h4>
+                                <input type="text" id="checkout-name" value="أحمد محمد" style="background:transparent; border:none; border-bottom:1px dashed var(--primary-color); font-size:16px; font-weight:600; width:100%; color:var(--text-main); font-family:inherit; outline:none; padding: 4px 0;">
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="info-icon">
+                                <i class="ph ph-phone"></i>
+                            </div>
+                            <div class="info-content" style="width: 100%;">
+                                <h4 class="lang-text" data-ar="رقم التليفون" data-en="Phone Number">رقم التليفون</h4>
+                                <input type="tel" id="checkout-phone" value="01012345678" style="background:transparent; border:none; border-bottom:1px dashed var(--primary-color); font-size:16px; font-weight:600; width:100%; color:var(--text-main); font-family:inherit; outline:none; padding: 4px 0; direction: ltr; text-align: right;">
+                            </div>
+                        </div>
+
+                        <div class="info-box" style="grid-column: 1 / -1; flex-direction: column; align-items: stretch; gap: 12px;">
+                            <div style="display: flex; gap: 16px; align-items: center;">
+                                <div class="info-icon">
+                                    <i class="ph ph-map-pin"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h4 class="lang-text" data-ar="عنوان التوصيل" data-en="Delivery Address">عنوان التوصيل</h4>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-top: 8px;">
+                                <input type="text" id="checkout-street" class="lang-text" data-ar="الشارع، رقم العمارة، الشقة" data-en="Street, Building, Apt" placeholder="الشارع، رقم العمارة، الشقة" value="شارع 9، عمارة 12، شقة 5" style="background:var(--bg-color); border:1px solid var(--border-color); border-radius:8px; padding: 10px; font-size:14px; color:var(--text-main); font-family:inherit; outline:none;">
+                                <input type="text" id="checkout-city" class="lang-text" data-ar="المدينة" data-en="City" placeholder="المدينة" value="المعادي" style="background:var(--bg-color); border:1px solid var(--border-color); border-radius:8px; padding: 10px; font-size:14px; color:var(--text-main); font-family:inherit; outline:none;">
+                                <input type="text" id="checkout-governorate" class="lang-text" data-ar="المحافظة" data-en="Governorate" placeholder="المحافظة" value="القاهرة" style="background:var(--bg-color); border:1px solid var(--border-color); border-radius:8px; padding: 10px; font-size:14px; color:var(--text-main); font-family:inherit; outline:none;">
+                            </div>
+                        </div>
+
+                        <div class="info-box" style="grid-column: 1 / -1;">
+                            <div class="info-icon">
+                                <i class="ph ph-note-pencil"></i>
+                            </div>
+                            <div class="info-content" style="width: 100%;">
+                                <h4 class="lang-text" data-ar="ملاحظات الطلب (اختياري)" data-en="Order Notes (Optional)">ملاحظات الطلب (اختياري)</h4>
+                                <textarea id="checkout-notes" class="lang-text" data-ar="اكتب هنا أي ملاحظات إضافية للدليفري أو الصيدلية..." data-en="Write any additional notes for delivery or pharmacy here..." placeholder="اكتب هنا أي ملاحظات إضافية للدليفري أو الصيدلية..." style="background:transparent; border:none; border-bottom:1px dashed var(--primary-color); font-size:15px; width:100%; color:var(--text-main); font-family:inherit; min-height:50px; resize:vertical; outline:none; margin-top:8px; padding: 4px 0;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-summary">
+                        <div>
+                            <div class="summary-label lang-text" data-ar="إجمالي المبلغ المطلوب" data-en="Total Amount Due">إجمالي المبلغ المطلوب</div>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div class="summary-total" style="direction: ltr;">115</div>
+                                <span class="lang-text" style="color: var(--text-muted); font-weight: 600;" data-ar="جنيه مصري" data-en="EGP">جنيه مصري</span>
+                            </div>
+                        </div>
+                        <div style="background: rgba(52,199,89,0.1); color: #1e8a3c; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+                            <i class="ph-fill ph-money"></i>
+                            <span class="lang-text" data-ar="الدفع عند التوصيل" data-en="Cash on Delivery">الدفع عند التوصيل</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary-custom" style="width: 100%; padding: 16px; font-size: 18px; margin-top: 10px; display: flex; justify-content: center; gap: 10px;" onclick="confirmOrder()">
+                        <i class="ph ph-check-circle" style="font-size: 24px;"></i>
+                        <span class="lang-text" data-ar="تأكيد الطلب" data-en="Confirm Order">تأكيد الطلب</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

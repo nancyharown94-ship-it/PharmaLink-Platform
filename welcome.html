@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6d4bff;
+            --secondary: #9e8bff;
+            --bg: #fbf7ff;
+            --surface: rgba(255, 255, 255, 0.88);
+            --text: #2c2550;
+            --muted: rgba(44, 37, 80, .75);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: radial-gradient(circle at top left, #ffffff 0%, #f6f1ff 45%, #f1ebff 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ── Glow Blobs ── */
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            animation: floatBlob 8s infinite alternate ease-in-out;
+        }
+
+        .glow-1 {
+            width: 420px;
+            height: 420px;
+            background: rgba(107, 77, 255, 0.24);
+            top: -12%;
+            left: -8%;
+        }
+
+        .glow-2 {
+            width: 520px;
+            height: 520px;
+            background: rgba(158, 139, 255, 0.18);
+            bottom: -14%;
+            right: -10%;
+            animation-delay: -4s;
+        }
+
+        .glow-3 {
+            width: 320px;
+            height: 320px;
+            background: rgba(182, 164, 255, 0.16);
+            top: 28%;
+            right: 8%;
+            animation-delay: -2s;
+        }
+
+        @keyframes floatBlob {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-50px) scale(1.15);
+            }
+        }
+
+        /* ── Dot Grid ── */
+        .nodes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(rgba(109, 77, 255, .16) 2px, transparent 2px),
+                radial-gradient(rgba(158, 139, 255, .1) 2px, transparent 2px);
+            background-size: 48px 48px, 68px 68px;
+            background-position: 0 0, 24px 24px;
+            opacity: .28;
+            animation: moveBg 30s linear infinite;
+        }
+
+        @keyframes moveBg {
+            0% {
+                background-position: 0 0, 25px 25px;
+            }
+
+            100% {
+                background-position: 50px 50px, 95px 95px;
+            }
+        }
+
+        /* ── Content ── */
+        .welcome-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 46px;
+            border-radius: 36px;
+            background: var(--surface);
+            border: 1px solid rgba(109, 77, 255, 0.12);
+            box-shadow: 0 24px 80px rgba(109, 77, 255, 0.08);
+        }
+
+        /* ── Logo SVG wrapper ── */
+        .logo-svg-wrap {
+            width: 240px;
+            height: 240px;
+            opacity: 0;
+            transform: scale(0.75);
+            animation: popIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            margin-bottom: 28px;
+            filter: drop-shadow(0 0 24px rgba(109, 77, 255, 0.28));
+        }
+
+        .logo-svg-wrap:hover {
+            filter: drop-shadow(0 0 36px rgba(109, 77, 255, 0.42));
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Orbit ring rotation */
+        .orbit-ring {
+            transform-origin: 100px 110px;
+            animation: rotateRing 5s linear infinite;
+        }
+
+        @keyframes rotateRing {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Pill pulse */
+        .pill-group {
+            animation: pillPulse 3s ease-in-out infinite;
+            transform-origin: 100px 100px;
+        }
+
+        @keyframes pillPulse {
+
+            0%,
+            100% {
+                filter: brightness(1) drop-shadow(0 4px 12px rgba(109, 77, 255, .24));
+            }
+
+            50% {
+                filter: brightness(1.08) drop-shadow(0 4px 28px rgba(109, 77, 255, .42));
+            }
+        }
+
+        /* ── Text ── */
+        .welcome-text {
+            opacity: 0;
+            transform: translateY(28px);
+            animation: slideUp 1s ease 0.7s forwards;
+        }
+
+        .welcome-text h1 {
+            font-size: 2.9rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            background: linear-gradient(120deg, #6d4bff, #8f7bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-text p {
+            font-size: 1.1rem;
+            color: rgba(44, 37, 80, .78);
+            margin-bottom: 46px;
+            letter-spacing: .5px;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Button ── */
+        .btn-enter {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #7c5cff, #6d4bff, #8f7bff);
+            border: none;
+            border-radius: 40px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 14px 36px rgba(109, 77, 255, .24);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s ease 1s forwards;
+            transition: all .4s cubic-bezier(.175, .885, .32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-enter:hover {
+            transform: translateY(-8px) scale(1.04);
+            box-shadow: 0 22px 48px rgba(109, 77, 255, .32);
+        }
+
+        .btn-enter::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+            transition: left .55s ease-in-out;
+        }
+
+        .btn-enter:hover::after {
+            left: 140%;
+        }
+
+        .btn-enter svg {
+            width: 22px;
+            height: 22px;
+            transition: transform .3s;
+            flex-shrink: 0;
+        }
+
+        .btn-enter:hover svg {
+            transform: translateX(-5px);
+        }
+
+        /* ── Ripple Effect ── */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-anim 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-anim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glow-circle glow-1"></div>
+    <div class="glow-circle glow-2"></div>
+    <div class="glow-circle glow-3"></div>
+    <div class="nodes"></div>
+
+    <div class="welcome-content">
+
+        <!-- ═══ INLINE SVG LOGO (Pharmalink style) ═══ -->
+        <div class="logo-svg-wrap">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                <defs>
+                    <!-- Pill body gradient -->
+                    <radialGradient id="pillGrad" cx="35%" cy="30%" r="70%">
+                        <stop offset="0%" stop-color="#d5c0ff" />
+                        <stop offset="45%" stop-color="#8f7bff" />
+                        <stop offset="100%" stop-color="#6846f0" />
+                    </radialGradient>
+                    <!-- Pill shine -->
+                    <linearGradient id="pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                        <stop offset="60%" stop-color="rgba(255,255,255,0)" />
+                    </linearGradient>
+                    <!-- Orbit ring gradient -->
+                    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#a89cff" />
+                        <stop offset="50%" stop-color="#6d4bff" />
+                        <stop offset="100%" stop-color="#d4c2ff" />
+                    </linearGradient>
+                    <!-- Orbit ring shine -->
+                    <linearGradient id="ringShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+                    </linearGradient>
+                    <!-- Purple sphere gradient -->
+                    <radialGradient id="sphereGrad" cx="35%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="#f3e4ff" />
+                        <stop offset="50%" stop-color="#8f7bff" />
+                        <stop offset="100%" stop-color="#5e3cff" />
+                    </radialGradient>
+                    <!-- Shadow under pill -->
+                    <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="rgba(90, 55, 170, 0.2)" />
+                        <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+                    </radialGradient>
+                    <!-- Leaf overlay -->
+                    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="rgba(171, 146, 255, 0.34)" />
+                        <stop offset="100%" stop-color="rgba(111, 85, 255, 0)" />
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Shadow/reflection -->
+                <ellipse cx="100" cy="168" rx="44" ry="10" fill="url(#shadowGrad)" opacity="0.6" />
+
+                <!-- ── Pill body ── -->
+                <g class="pill-group">
+                    <!-- Main pill capsule shape -->
+                    <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#pillGrad)"
+                        filter="url(#glow)" />
+                    <!-- Shine overlay on pill -->
+                    <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#pillShine)" opacity="0.7" />
+                    <!-- Leaf curve left -->
+                    <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#leafGrad)" opacity="0.6" />
+                    <!-- Leaf curve right -->
+                    <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#leafGrad)" opacity="0.4" />
+                    <!-- Dividing line between pill halves -->
+                    <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" />
+
+                    <!-- White Medical Cross -->
+                    <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95" />
+                    <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95" />
+                </g>
+
+                <!-- ── Orbit ring ── -->
+                <g class="orbit-ring">
+                    <!-- Back half of ring (behind pill) -->
+                    <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#ringGrad)" stroke-width="7"
+                        stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5" />
+                    <!-- Front half of ring (in front of pill) -->
+                    <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#ringGrad)" stroke-width="7"
+                        stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#glow)" />
+                    <!-- Ring shine highlight -->
+                    <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#ringShine)" stroke-width="3"
+                        stroke-dasharray="50 138" stroke-dashoffset="20" opacity="0.7" />
+                </g>
+
+                <!-- ── Blue orbiting sphere ── -->
+                <circle cx="158" cy="72" r="14" fill="url(#sphereGrad)" filter="url(#glow)" />
+                <!-- Sphere shine -->
+                <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)" />
+            </svg>
+        </div>
+        <!-- ═══ END LOGO ═══ -->
+        
+        <div class="welcome-text">
+            <h1>PharmaLink</h1>
+            <p>Your pharmacy, anytime anywhere</p>
+        </div>
+
+        <a href="auth.html" class="btn-enter">
+            <span>Start</span>
+        </a>
+
+    </div>
+
+    <script>
+        document.querySelector('.btn-enter').addEventListener('click', function (e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+
+            let x = e.clientX - this.getBoundingClientRect().left;
+            let y = e.clientY - this.getBoundingClientRect().top;
+
+            let ripples = document.createElement('span');
+            ripples.style.left = x + 'px';
+            ripples.style.top = y + 'px';
+            ripples.classList.add('ripple');
+            this.appendChild(ripples);
+
+            setTimeout(() => {
+                window.location.href = href;
+            }, 350);
+        });
+    </script>
+</body>
+
+</html>

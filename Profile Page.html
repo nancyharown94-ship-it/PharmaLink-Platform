@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Profile</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pharmacy.css">
+    <style>
+        .profile-tabs { display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; overflow-x: auto; }
+        .tab { padding: 10px 20px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+        .tab.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+        .tab:hover:not(.active) { color: var(--text-main); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(255,255,255,0.7)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></linearGradient><linearGradient id="mpl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad)" filter="url(#mpl-glow)"/><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillShine)" opacity="0.7"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="logo-container">
+                                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="صيدلية رقمية" data-en="Digital Pharmacy">صيدلية رقمية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="ph ph-house"></i>
+                    <span class="lang-text" data-ar="الرئيسية" data-en="Home">الرئيسية</span>
+                </a>
+                <a href="search.html" class="nav-item">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <span class="lang-text" data-ar="بحث" data-en="Search">بحث</span>
+                </a>
+                <a href="cart.html" class="nav-item">
+                    <i class="ph ph-shopping-cart"></i>
+                    <span class="lang-text" data-ar="السلة" data-en="Cart">السلة</span>
+                </a>
+                <a href="Orders Tracking Page.html" class="nav-item">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="طلباتي" data-en="Orders">طلباتي</span>
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="Profile Page.html" class="nav-item active">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" class="lang-text" data-ar="ابحث عن دواء أو صيدلية..." data-en="Search for medicine or pharmacy..." placeholder="ابحث عن دواء أو صيدلية...">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle" style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+                </div>
+            </header>
+
+            <div class="page-header mb-4">
+                <h2 class="page-title lang-text" data-ar="الملف الشخصي" data-en="Profile" style="margin: 0;">الملف الشخصي</h2>
+            </div>
+
+            <div class="widget-card">
+                <div class="profile-tabs">
+                    <div class="tab active lang-text" data-ar="البيانات الشخصية" data-en="Personal Details" data-target="details">البيانات الشخصية</div>
+                    <div class="tab lang-text" data-ar="العناوين" data-en="Addresses" data-target="addresses">العناوين</div>
+                    <div class="tab lang-text" data-ar="طريقة الدفع" data-en="Payment Method" data-target="payments">طريقة الدفع</div>
+                </div>
+                <div class="tab-content active" id="details">
+                    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+                        <div style="width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(63,0,231,0.1); border: 2px solid var(--primary-color);">
+                            <img id="profile-avatar" src="" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                            <i id="profile-avatar-placeholder" class="ph ph-user" style="font-size: 32px; color: var(--primary-color);"></i>
+                        </div>
+                        <button id="change-photo-btn" class="btn-outline-custom lang-text" data-ar="تغيير الصورة" data-en="Change Photo" style="padding: 8px 16px; font-size: 14px;">تغيير الصورة</button>
+                        <input type="file" id="profile-photo-input" style="display: none;" accept="image/*">
+                    </div>
+
+                    <div class="medicine-form">
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل</label>
+                                <input type="text" id="profile-name" class="form-control" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</label>
+                                <input type="text" id="profile-phone" class="form-control" value="" style="direction: ltr; text-align: right;">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+                                <input type="email" id="profile-email" class="form-control" value="" style="direction: ltr; text-align: right;">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="العنوان" data-en="Address">العنوان</label>
+                                <input type="text" id="profile-address" class="form-control" value="">
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <select class="form-control">
+                                    <option>A+</option>
+                                    <option selected>O+</option>
+                                    <option>B+</option>
+                                    <option>AB+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-top: 24px;">
+                            <button id="save-changes-btn" class="btn-primary-custom lang-text" data-ar="حفظ التغييرات" data-en="Save Changes">حفظ التغييرات</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="favorites" style="display: none;">
+                    <div id="favorites-grid" class="products-grid">
+                        <div class="product-card">
+                            <img src="assets/images/panadol.png" alt="Panadol Extra" class="product-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2966/2966327.png'">
+                            <div style="position: absolute; top: 12px; left: 12px; color: var(--accent-color); background: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: var(--shadow-sm); cursor: pointer;">
+                                <i class="ph-fill ph-heart"></i>
+                            </div>
+                            <div class="product-title">Panadol Extra</div>
+                            <div class="product-pharmacy lang-text" data-ar="صيدلية النهدي" data-en="Nahdi Pharmacy">صيدلية النهدي</div>
+                            <div class="product-footer">
+                                <span class="product-price">25 <span class="currency-symbol lang-text" data-ar="جنيه" data-en="EGP">جنيه</span></span>
+                                <button class="add-to-cart-btn"><i class="ph ph-shopping-cart"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-card">
+                            <img src="assets/images/pharmacy_logo.png" alt="Vitamin C" class="product-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2966/2966327.png'">
+                            <div style="position: absolute; top: 12px; left: 12px; color: var(--accent-color); background: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: var(--shadow-sm); cursor: pointer;">
+                                <i class="ph-fill ph-heart"></i>
+                            </div>
+                            <div class="product-title">Vitamin C 1000mg</div>
+                            <div class="product-pharmacy lang-text" data-ar="صيدلية الدواء" data-en="Al-Dawaa Pharmacy">صيدلية الدواء</div>
+                            <div class="product-footer">
+                                <span class="product-price">45 <span class="currency-symbol lang-text" data-ar="جنيه" data-en="EGP">جنيه</span></span>
+                                <button class="add-to-cart-btn"><i class="ph ph-shopping-cart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="addresses">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h3 class="lang-text" data-ar="العناوين المحفوظة" data-en="Saved Addresses" style="font-size: 16px;">العناوين المحفوظة</h3>
+                        <button id="add-address-btn" class="btn-primary-custom" style="padding: 8px 16px; font-size: 14px;"><i class="ph ph-plus"></i> <span class="lang-text" data-ar="إضافة عنوان" data-en="Add Address">إضافة عنوان</span></button>
+                    </div>
+
+                    <div id="addresses-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="border: 2px solid var(--primary-color); border-radius: 16px; padding: 20px; position: relative;">
+                            <span class="status-badge status-processing lang-text" data-ar="الافتراضي" data-en="Default" style="position: absolute; top: 20px; left: 20px;">الافتراضي</span>
+                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                                <div style="width: 48px; height: 48px; background: rgba(63,0,231,0.1); color: var(--primary-color); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                    <i class="ph ph-house"></i>
+                                </div>
+                                <div>
+                                    <h4 class="lang-text" data-ar="المنزل" data-en="Home" style="font-size: 16px; margin-bottom: 4px;">المنزل</h4>
+                                    <p class="lang-text" data-ar="أحمد محمد" data-en="Ahmed Mohamed" style="color: var(--text-muted); font-size: 13px;">أحمد محمد</p>
+                                </div>
+                            </div>
+                            <p class="lang-text" data-ar="القاهرة، المعادي، شارع 9، عمارة 12، شقة 5" data-en="Cairo, Maadi, 9th Street, Building 12, Apt 5" style="font-size: 14px; margin-bottom: 20px; line-height: 1.6;">القاهرة، المعادي، شارع 9، عمارة 12، شقة 5</p>
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn-outline-custom" style="padding: 6px 12px; font-size: 13px;"><i class="ph ph-pencil-simple"></i> <span class="lang-text" data-ar="تعديل" data-en="Edit">تعديل</span></button>
+                                <button class="btn-outline-custom" style="padding: 6px 12px; font-size: 13px; color: var(--danger-color); border-color: var(--danger-color);"><i class="ph ph-trash"></i> <span class="lang-text" data-ar="حذف" data-en="Delete">حذف</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="payments">
+                    <h3 class="lang-text" data-ar="طريقة الدفع" data-en="Payment Method" style="font-size: 16px; margin-bottom: 24px;">طريقة الدفع</h3>
+
+                    <!-- Cash on Delivery Card -->
+                    <div style="border: 2px solid var(--primary-color); border-radius: 20px; padding: 32px; max-width: 480px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; background: rgba(63,0,231,0.03);">
+                        <div style="width: 72px; height: 72px; background: rgba(63,0,231,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 34px; color: var(--primary-color);">
+                            <i class="ph ph-money"></i>
+                        </div>
+                        <div>
+                            <h4 class="lang-text" data-ar="الدفع عند التوصيل" data-en="Cash on Delivery" style="font-size: 20px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">الدفع عند التوصيل</h4>
+                            <p class="lang-text" data-ar="ادفع نقداً عند استلام طلبك مباشرةً من المندوب." data-en="Pay in cash when your order is delivered by the courier." style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">ادفع نقداً عند استلام طلبك مباشرةً من المندوب.</p>
+                        </div>
+                        <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(52,199,89,0.12); color: #1e8a3c; font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 20px;">
+                            <i class="ph-fill ph-check-circle"></i>
+                            <span class="lang-text" data-ar="طريقة الدفع المفعّلة" data-en="Active Payment Method">طريقة الدفع المفعّلة</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) {
+                alert('يجب تسجيل الدخول أولاً للوصول للملف الشخصي');
+                return window.location.href = 'auth.html';
+            }
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.target).classList.add('active');
+            });
+        });
+            // Elements references
+            const nameInp = document.getElementById('profile-name');
+            const phoneInp = document.getElementById('profile-phone');
+            const emailInp = document.getElementById('profile-email');
+            const addressInp = document.getElementById('profile-address');
+            const saveBtn = document.getElementById('save-changes-btn');
+
+            // Image elements references
+            const avatarImg = document.getElementById('profile-avatar');
+            const avatarPlaceholder = document.getElementById('profile-avatar-placeholder');
+            const changePhotoBtn = document.getElementById('change-photo-btn');
+            const photoInput = document.getElementById('profile-photo-input');
+
+            // Addresses references
+            const addressesGrid = document.getElementById('addresses-grid');
+            const addAddressBtn = document.getElementById('add-address-btn');
+
+
+
+            let currentPhotoBase64 = "";
+            let userAddresses = [];
+            let currentUserId = "";
+
+            // Dialog elements references
+            const addressDialog = document.getElementById('address-dialog');
+            const dialogTitle = document.getElementById('dialog-title');
+            const dAddrTitle = document.getElementById('dialog-address-title');
+            const dAddrDetails = document.getElementById('dialog-address-details');
+            const dAddrPhone = document.getElementById('dialog-address-phone');
+            const saveDialogBtn = document.getElementById('save-dialog-btn');
+            const cancelDialogBtn = document.getElementById('cancel-dialog-btn');
+            const closeDialogBtn = document.getElementById('close-dialog-btn');
+
+            const confirmDialog = document.getElementById('confirm-dialog');
+            const confirmYesBtn = document.getElementById('confirm-yes-btn');
+            const confirmNoBtn = document.getElementById('confirm-no-btn');
+
+            let editingAddressIndex = null;
+            let addressToDeleteIndex = null;
+
+            function openAddressModal(titleText, titleVal = '', detailsVal = '', phoneVal = '', index = null) {
+                editingAddressIndex = index;
+                dialogTitle.textContent = titleText;
+                dAddrTitle.value = titleVal;
+                dAddrDetails.value = detailsVal;
+                dAddrPhone.value = phoneVal;
+
+                addressDialog.style.display = 'flex';
+                setTimeout(() => {
+                    addressDialog.style.transform = 'scale(1)';
+                    addressDialog.style.opacity = '1';
+                }, 50);
+            }
+
+            function closeAddressModal() {
+                addressDialog.style.transform = 'scale(0.9)';
+                addressDialog.style.opacity = '0';
+                setTimeout(() => {
+                    addressDialog.style.display = 'none';
+                }, 300);
+            }
+
+            if (cancelDialogBtn) cancelDialogBtn.addEventListener('click', (e) => { e.preventDefault(); closeAddressModal(); });
+            if (closeDialogBtn) closeDialogBtn.addEventListener('click', (e) => { e.preventDefault(); closeAddressModal(); });
+
+            if (saveDialogBtn) {
+                saveDialogBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const title = dAddrTitle.value.trim();
+                    const details = dAddrDetails.value.trim();
+                    const phone = dAddrPhone.value.trim();
+
+                    if (!title || !details) {
+                        showToast('برجاء ملء الحقول المطلوبة', 'error');
+                        return;
+                    }
+
+                    if (editingAddressIndex !== null) {
+                        userAddresses[editingAddressIndex] = { title, details, phone };
+                    } else {
+                        userAddresses.push({ title, details, phone });
+                    }
+
+                    saveAddressesToBackend();
+                    closeAddressModal();
+                });
+            }
+
+            function openConfirmModal(index) {
+                addressToDeleteIndex = index;
+                confirmDialog.style.display = 'flex';
+                setTimeout(() => {
+                    confirmDialog.style.transform = 'scale(1)';
+                    confirmDialog.style.opacity = '1';
+                }, 50);
+            }
+
+            function closeConfirmModal() {
+                confirmDialog.style.transform = 'scale(0.9)';
+                confirmDialog.style.opacity = '0';
+                setTimeout(() => {
+                    confirmDialog.style.display = 'none';
+                }, 300);
+            }
+
+            if (confirmNoBtn) confirmNoBtn.addEventListener('click', (e) => { e.preventDefault(); closeConfirmModal(); });
+
+            if (confirmYesBtn) {
+                confirmYesBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (addressToDeleteIndex !== null) {
+                        userAddresses.splice(addressToDeleteIndex, 1);
+                        saveAddressesToBackend();
+                        closeConfirmModal();
+                    }
+                });
+            }
+
+            // Modern premium Toast function
+            function showToast(message, type = 'success') {
+                let container = document.getElementById('toast-container');
+                if (!container) {
+                    container = document.createElement('div');
+                    container.id = 'toast-container';
+                    container.style.cssText = `
+                        position: fixed;
+                        top: 24px;
+                        right: 24px;
+                        z-index: 9999;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                        pointer-events: none;
+                        font-family: inherit;
+                    `;
+                    document.body.appendChild(container);
+                }
+
+                const toast = document.createElement('div');
+                toast.style.cssText = `
+                    min-width: 300px;
+                    max-width: 400px;
+                    padding: 16px 20px;
+                    border-radius: 16px;
+                    background: rgba(255, 255, 255, 0.85);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    box-shadow: 0 10px 30px rgba(63, 0, 231, 0.15);
+                    border: 1px solid rgba(63, 0, 231, 0.1);
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    transform: translateY(-20px);
+                    opacity: 0;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    pointer-events: auto;
+                `;
+
+                const icon = document.createElement('i');
+                icon.className = type === 'success' ? 'ph-fill ph-check-circle' : 'ph-fill ph-x-circle';
+                icon.style.cssText = `
+                    font-size: 24px;
+                    color: ${type === 'success' ? '#34c759' : '#ff3b30'};
+                `;
+
+                const text = document.createElement('div');
+                text.style.cssText = `
+                    font-size: 14px;
+                    font-weight: 700;
+                    color: #1c1c1e;
+                `;
+                text.textContent = message;
+
+                toast.appendChild(icon);
+                toast.appendChild(text);
+                container.appendChild(toast);
+
+                // Trigger animation
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(0)';
+                    toast.style.opacity = '1';
+                }, 10);
+
+                // Remove toast after 3 seconds
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(-20px)';
+                    toast.style.opacity = '0';
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            // Photo Upload logic
+            if (changePhotoBtn && photoInput) {
+                changePhotoBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    photoInput.click();
+                });
+
+                photoInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(evt) {
+                            currentPhotoBase64 = evt.target.result;
+                            if (avatarImg) {
+                                avatarImg.src = currentPhotoBase64;
+                                avatarImg.style.display = 'block';
+                            }
+                            if (avatarPlaceholder) {
+                                avatarPlaceholder.style.display = 'none';
+                            }
+                            showToast('تم اختيار الصورة الشخصية الجديدة، اضغط على حفظ التغييرات لتأكيد الحفظ');
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Saved Addresses rendering logic
+            function renderAddresses() {
+                if (!addressesGrid) return;
+                addressesGrid.innerHTML = '';
+
+                if (!userAddresses || userAddresses.length === 0) {
+                    addressesGrid.innerHTML = `
+                        <div style="grid-column: span 2; text-align: center; color: var(--text-muted); padding: 40px; width: 100%;">
+                            <i class="ph ph-map-pin" style="font-size: 48px; margin-bottom: 12px; display: block; opacity: 0.5; color: var(--primary-color);"></i>
+                            لا توجد عناوين محفوظة حالياً. اضغط على إضافة عنوان جديد.
+                        </div>
+                    `;
+                    return;
+                }
+
+                userAddresses.forEach((addr, index) => {
+                    const card = document.createElement('div');
+                    card.style.cssText = `
+                        border: 2px solid ${index === 0 ? 'var(--primary-color)' : 'var(--border-color)'};
+                        border-radius: 16px;
+                        padding: 20px;
+                        position: relative;
+                        background: var(--bg-color);
+                    `;
+                    card.innerHTML = `
+                        ${index === 0 ? '<span class="status-badge status-processing lang-text" style="position: absolute; top: 20px; left: 20px; background: rgba(63,0,231,0.1); color: var(--primary-color); padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: bold;">الافتراضي</span>' : ''}
+                        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                            <div style="width: 48px; height: 48px; background: rgba(63,0,231,0.06); color: var(--primary-color); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                <i class="ph ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 16px; margin: 0; font-weight: bold;">${addr.title}</h4>
+                                <p style="color: var(--text-muted); font-size: 13px; margin: 4px 0 0 0;">${addr.phone || ''}</p>
+                            </div>
+                        </div>
+                        <p style="font-size: 14px; margin: 0 0 20px 0; line-height: 1.6; color: var(--text-main);">${addr.details}</p>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn-outline-custom edit-addr-btn" data-index="${index}" style="padding: 6px 14px; font-size: 13px; border-radius: 8px; cursor: pointer;"><i class="ph ph-pencil-simple"></i> تعديل</button>
+                            <button class="btn-outline-custom delete-addr-btn" data-index="${index}" style="padding: 6px 14px; font-size: 13px; color: var(--danger-color); border-color: var(--danger-color); border-radius: 8px; cursor: pointer;"><i class="ph ph-trash"></i> حذف</button>
+                        </div>
+                    `;
+                    addressesGrid.appendChild(card);
+                });
+
+                // Attach listeners
+                document.querySelectorAll('.edit-addr-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = parseInt(e.currentTarget.dataset.index);
+                        const addr = userAddresses[index];
+                        openAddressModal('تعديل عنوان قائم', addr.title, addr.details, addr.phone, index);
+                    });
+                });
+
+                document.querySelectorAll('.delete-addr-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const index = parseInt(e.currentTarget.dataset.index);
+                        openConfirmModal(index);
+                    });
+                });
+            }
+
+            async function saveAddressesToBackend() {
+                try {
+                    const res = await fetch('http://localhost:3000/api/users/profile', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ addresses: userAddresses })
+                    });
+                    if (res.ok) {
+                        const updatedData = await res.json();
+                        userAddresses = updatedData.addresses || [];
+                        renderAddresses();
+                        showToast('تم تحديث العناوين بنجاح');
+                    } else {
+                        showToast('حدث خطأ أثناء تحديث العنوان', 'error');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    showToast('فشل الاتصال بالسيرفر', 'error');
+                }
+            }
+
+            if (addAddressBtn) {
+                addAddressBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openAddressModal('إضافة عنوان جديد');
+                });
+            }
+
+            // Simple Add to Cart helper for Profile page
+            window.addToCart = function(id, name, price, image, pharmacyId) {
+                let cart = JSON.parse(localStorage.getItem('patientCart')) || [];
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: id,
+                        name: name,
+                        price: price,
+                        image: image || '',
+                        pharmacyId: pharmacyId || '',
+                        quantity: 1
+                    });
+                }
+                
+                localStorage.setItem('patientCart', JSON.stringify(cart));
+                showToast('تمت إضافة المنتج إلى السلة بنجاح! 🛒');
+            };
+
+
+
+            // 1. Fetch user details from Backend
+            try {
+                const res = await fetch('http://localhost:3000/api/users/profile', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    currentUserId = data._id;
+                    
+                    if (nameInp) nameInp.value = data.name || '';
+                    if (phoneInp) phoneInp.value = data.phone || '';
+                    if (emailInp) emailInp.value = data.email || '';
+                    if (addressInp) addressInp.value = data.address || '';
+                    
+                    // Render photo if exists
+                    if (data.profilePhoto) {
+                        currentPhotoBase64 = data.profilePhoto;
+                        if (avatarImg) {
+                            avatarImg.src = data.profilePhoto;
+                            avatarImg.style.display = 'block';
+                        }
+                        if (avatarPlaceholder) {
+                            avatarPlaceholder.style.display = 'none';
+                        }
+                    }
+
+                    // Load Addresses
+                    userAddresses = data.addresses || [];
+                    renderAddresses();
+
+
+
+                } else {
+                    console.error('Session expired or invalid token');
+                    localStorage.removeItem('userToken');
+                    localStorage.removeItem('selectedRole');
+                    window.location.href = 'auth.html';
+                }
+            } catch (err) {
+                console.error('Fetch profile error:', err);
+            }
+
+            // 2. Save changes (Update profile) to Backend
+            if (saveBtn) {
+                saveBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    
+                    const name = nameInp.value.trim();
+                    const phone = phoneInp.value.trim();
+                    const email = emailInp.value.trim();
+                    const address = addressInp.value.trim();
+
+                    if (!name || !phone || !email || !address) {
+                        showToast('برجاء ملء جميع الحقول المطلوبة', 'error');
+                        return;
+                    }
+
+                    try {
+                        const res = await fetch('http://localhost:3000/api/users/profile', {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ 
+                                name, 
+                                phone, 
+                                email, 
+                                address,
+                                profilePhoto: currentPhotoBase64 
+                            })
+                        });
+
+                        if (res.ok) {
+                            showToast('تم حفظ التغييرات بنجاح 🎉');
+                        } else {
+                            const errData = await res.json();
+                            showToast('حدث خطأ أثناء حفظ التغييرات: ' + (errData.message || ''), 'error');
+                        }
+                    } catch (err) {
+                        console.error('Update profile error:', err);
+                        showToast('فشل الاتصال بالسيرفر', 'error');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Modern Address Dialog -->
+    <dialog id="address-dialog" style="border: none; border-radius: 20px; padding: 24px; width: 90%; max-width: 450px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 20px 50px rgba(63,0,231,0.2); font-family: inherit; outline: none; margin: auto; position: fixed; inset: 0; transform: scale(0.9); opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: none; flex-direction: column; gap: 16px; z-index: 10000;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 8px;">
+            <h3 id="dialog-title" style="font-size: 18px; font-weight: bold; color: var(--primary-color); margin: 0;">إضافة عنوان جديد</h3>
+            <button id="close-dialog-btn" style="background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted);"><i class="ph ph-x"></i></button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 13px; font-weight: 600; color: var(--text-main); display: block; margin-bottom: 6px;">اسم العنوان (مثال: المنزل، العمل)</label>
+                <input type="text" id="dialog-address-title" class="form-control" placeholder="المنزل، العمل، إلخ" style="width: 100%; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 13px; font-weight: 600; color: var(--text-main); display: block; margin-bottom: 6px;">العنوان بالتفصيل</label>
+                <textarea id="dialog-address-details" class="form-control" placeholder="المحافظة، المدينة، الشارع، رقم البناية والمنزل" style="width: 100%; min-height: 80px; box-sizing: border-box; resize: vertical; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); font-family: inherit;"></textarea>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label style="font-size: 13px; font-weight: 600; color: var(--text-main); display: block; margin-bottom: 6px;">رقم الهاتف للتواصل</label>
+                <input type="text" id="dialog-address-phone" class="form-control" placeholder="رقم الهاتف" style="width: 100%; box-sizing: border-box; direction: ltr; text-align: right;">
+            </div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 16px;">
+            <button id="save-dialog-btn" class="btn-primary-custom" style="padding: 10px 20px; font-size: 14px; flex-grow: 1;">حفظ</button>
+            <button id="cancel-dialog-btn" class="btn-outline-custom" style="padding: 10px 20px; font-size: 14px; flex-grow: 1;">إلغاء</button>
+        </div>
+    </dialog>
+
+    <!-- Modern Confirm Dialog -->
+    <dialog id="confirm-dialog" style="border: none; border-radius: 20px; padding: 24px; width: 90%; max-width: 380px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 20px 50px rgba(255,59,48,0.15); font-family: inherit; outline: none; margin: auto; position: fixed; inset: 0; transform: scale(0.9); opacity: 0; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: none; flex-direction: column; gap: 16px; align-items: center; text-align: center; z-index: 10000;">
+        <div style="width: 56px; height: 56px; background: rgba(255, 59, 48, 0.1); color: #ff3b30; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 8px;">
+            <i class="ph ph-warning"></i>
+        </div>
+        <h3 style="font-size: 16px; font-weight: bold; color: var(--text-main); margin: 0;">هل أنت متأكد من حذف هذا العنوان؟</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5;">لا يمكن التراجع عن هذا الإجراء بعد تأكيد الحذف.</p>
+        <div style="display: flex; gap: 12px; width: 100%; margin-top: 8px;">
+            <button id="confirm-yes-btn" class="btn-primary-custom" style="background: #ff3b30; border-color: #ff3b30; padding: 10px 20px; font-size: 14px; flex-grow: 1; border-radius: 12px; cursor: pointer; color: white;">حذف</button>
+            <button id="confirm-no-btn" class="btn-outline-custom" style="padding: 10px 20px; font-size: 14px; flex-grow: 1; border-radius: 12px; cursor: pointer;">إلغاء</button>
+        </div>
+    </dialog>
+</body>
+</html>

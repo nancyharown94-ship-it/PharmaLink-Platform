@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Orders</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pharmacy.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(255,255,255,0.7)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></linearGradient><linearGradient id="mpl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad)" filter="url(#mpl-glow)"/><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillShine)" opacity="0.7"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="logo-container">
+                                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="لوحة تحكم الصيدلية" data-en="Pharmacy Dashboard">لوحة تحكم الصيدلية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="pharmacy-dashboard.html" class="nav-item ">
+                    <i class="ph ph-squares-four"></i>
+                    <span class="lang-text" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
+                </a>
+                <a href="pharmacy-orders.html" class="nav-item active">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="إدارة الطلبات" data-en="Orders Management">إدارة الطلبات</span>
+                </a>
+                <a href="pharmacy-inventory.html" class="nav-item ">
+                    <i class="ph ph-stack"></i>
+                    <span class="lang-text" data-ar="المخزون" data-en="Inventory">المخزون</span>
+                </a>
+                <a href="pharmacy-add-medicine.html" class="nav-item ">
+                    <i class="ph ph-pill"></i>
+                    <span class="lang-text" data-ar="إضافة دواء" data-en="Add Medicine">إضافة دواء</span>
+                </a>
+                <a href="pharmacy-analytics.html" class="nav-item ">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span class="lang-text" data-ar="التحليلات" data-en="Analytics">التحليلات</span>
+                </a>
+                <a href="pharmacy-notifications.html" class="nav-item">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="pharmacy-profile.html" class="nav-item ">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="topbar-search-input" class="lang-text" data-ar="ابحث..." data-en="Search..." placeholder="ابحث...">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle" style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+
+                </div>
+            </header>
+
+            <div class="page-header flex-between mb-4">
+                <h2 class="page-title lang-text" data-ar="إدارة الطلبات" data-en="Orders Management" style="margin-bottom:0;">إدارة الطلبات</h2>
+                <div class="search-bar-top" style="width:250px;">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" id="order-search-input" class="lang-text" data-ar="بحث برقم الطلب..." data-en="Search order..." placeholder="بحث برقم الطلب...">
+                </div>
+            </div>
+
+            <div class="orders-tabs mb-4">
+                <button class="tab-btn active lang-text" data-status="all" data-ar="الكل" data-en="All">الكل</button>
+                <button class="tab-btn lang-text" data-status="pending" data-ar="قيد الانتظار" data-en="Pending">قيد الانتظار</button>
+                <button class="tab-btn lang-text" data-status="preparing" data-ar="جاري التجهيز" data-en="Processing">جاري التجهيز</button>
+                <button class="tab-btn lang-text" data-status="out_for_delivery" data-ar="خارج للتوصيل" data-en="Out for Delivery">خارج للتوصيل</button>
+                <button class="tab-btn lang-text" data-status="delivered" data-ar="مكتمل" data-en="Completed">مكتمل</button>
+            </div>
+
+            <div class="widget-card">
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th class="lang-text" data-ar="رقم الطلب" data-en="Order ID">رقم الطلب</th>
+                                <th class="lang-text" data-ar="العميل" data-en="Customer">العميل</th>
+                                <th class="lang-text" data-ar="التاريخ" data-en="Date">التاريخ</th>
+                                <th class="lang-text" data-ar="المنتجات" data-en="Items">المنتجات</th>
+                                <th class="lang-text" data-ar="الإجمالي" data-en="Total">الإجمالي</th>
+                                <th class="lang-text" data-ar="الحالة" data-en="Status">الحالة</th>
+                                <th class="lang-text" data-ar="الإجراءات" data-en="Actions">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody">
+                            <tr>
+                                <td colspan="7" style="text-align:center;">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) return window.location.href = 'auth.html';
+
+            const parseJwt = (token) => {
+                try { return JSON.parse(atob(token.split('.')[1])); } catch (e) { return null; }
+            };
+            const decoded = parseJwt(token);
+            const pharmacyId = decoded ? decoded.id : null;
+            if (!pharmacyId) return;
+
+            let allOrders = [];
+            let activeFilter = 'all';
+            let searchQuery = '';
+
+            const fetchOrders = async () => {
+                try {
+                    const res = await fetch(`http://localhost:3000/api/orders/pharmacy/${pharmacyId}`);
+                    if (res.ok) {
+                        allOrders = await res.json();
+                        filterAndRenderOrders();
+                    }
+                } catch (error) {
+                    console.error('Error fetching orders:', error);
+                }
+            };
+
+            const filterAndRenderOrders = () => {
+                let filtered = allOrders;
+                if (activeFilter !== 'all') {
+                    filtered = allOrders.filter(order => order.status === activeFilter);
+                }
+                if (searchQuery.trim() !== '') {
+                    const q = searchQuery.trim().toLowerCase();
+                    filtered = filtered.filter(order => {
+                        const orderId = order._id ? order._id.toLowerCase() : '';
+                        const shortId = orderId.slice(-6);
+                        const customerName = order.user && order.user.name ? order.user.name.toLowerCase() : '';
+                        return orderId.includes(q) || shortId.includes(q) || customerName.includes(q);
+                    });
+                }
+                renderOrders(filtered);
+            };
+
+            const renderOrders = (orders) => {
+                const tbody = document.getElementById('orders-tbody');
+                tbody.innerHTML = '';
+                if (orders.length === 0) {
+                    const emptyAr = 'لا توجد طلبات في هذا القسم';
+                    const emptyEn = 'No orders in this category';
+                    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;" class="lang-text" data-ar="${emptyAr}" data-en="${emptyEn}">${currentLang === 'ar' ? emptyAr : emptyEn}</td></tr>`;
+                    return;
+                }
+                orders.forEach(order => {
+                    const tr = document.createElement('tr');
+                    const customerName = order.user ? order.user.name : (currentLang === 'ar' ? 'غير معروف' : 'Unknown');
+                    const date = new Date(order.createdAt).toLocaleDateString(currentLang === 'ar' ? 'ar-EG' : 'en-US');
+                    const itemsCount = order.items ? order.items.length : 0;
+                    
+                    let statusClass = 'status-pending';
+                    let statusTextAr = 'قيد الانتظار';
+                    let statusTextEn = 'Pending';
+                    
+                    let actions = '';
+                    if (order.status === 'pending') {
+                        statusTextAr = 'طلب جديد';
+                        statusTextEn = 'New Order';
+                        actions = `
+                            <button class="btn-action btn-accept" onclick="updateStatus('${order._id}', 'preparing')" title="Accept" style="background:var(--success-color); color:white;"><i class="ph ph-check"></i></button>
+                            <button class="btn-action btn-reject" onclick="updateStatus('${order._id}', 'cancelled')" title="Reject" style="background:var(--danger-color); color:white;"><i class="ph ph-x"></i></button>
+                        `;
+                    } else if (order.status === 'preparing') {
+                        statusClass = 'status-processing';
+                        statusTextAr = 'جاري التجهيز';
+                        statusTextEn = 'Preparing';
+                        actions = `<button class="btn-action btn-ready lang-text" data-ar="خرج من الصيدلية" data-en="Out for Delivery" onclick="updateStatus('${order._id}', 'out_for_delivery')" style="width:auto; padding:6px 12px; background:var(--primary-gradient); color:white; border:none; border-radius:8px; font-family:inherit; font-weight:bold; cursor:pointer;">${currentLang === 'ar' ? 'خرج من الصيدلية' : 'Out for Delivery'}</button>`;
+                    } else if (order.status === 'out_for_delivery') {
+                        statusClass = 'status-processing';
+                        statusTextAr = 'خارج للتوصيل';
+                        statusTextEn = 'Out for Delivery';
+                        actions = `<span class="lang-text" data-ar="بانتظار العميل" data-en="Awaiting Customer" style="font-size:13px; color:var(--text-muted); font-weight:bold;">${currentLang === 'ar' ? 'بانتظار العميل' : 'Awaiting Customer'}</span>`;
+                    } else if (order.status === 'delivered') {
+                        statusClass = 'status-completed';
+                        statusTextAr = 'تم الاستلام';
+                        statusTextEn = 'Delivered';
+                        actions = `<span class="lang-text" data-ar="مكتمل" data-en="Completed" style="color:var(--success-color); font-weight:bold; display:flex; align-items:center; gap:4px; font-size:14px;"><i class="ph ph-check-circle" style="font-size:18px;"></i> ${currentLang === 'ar' ? 'مكتمل' : 'Completed'}</span>`;
+                    } else {
+                        statusClass = 'status-cancelled';
+                        statusTextAr = 'ملغي';
+                        statusTextEn = 'Cancelled';
+                        actions = `<span style="color:var(--text-muted);">-</span>`;
+                    }
+                    
+                    const statusText = currentLang === 'ar' ? statusTextAr : statusTextEn;
+                    const itemsText = currentLang === 'ar' ? 'منتجات' : 'items';
+                    const sym = currentLang === 'ar' ? 'جنيه' : 'EGP';
+
+                    tr.innerHTML = `
+                        <td>#${order._id.substring(order._id.length - 6).toUpperCase()}</td>
+                        <td class="lang-text" data-ar="${order.user ? order.user.name : 'غير معروف'}" data-en="${order.user ? order.user.name : 'Unknown'}">${customerName}</td>
+                        <td>${date}</td>
+                        <td>${itemsCount} <span class="lang-text" data-ar="منتجات" data-en="items">${itemsText}</span></td>
+                        <td>${order.totalPrice} <span class="currency-symbol lang-text" data-ar="جنيه" data-en="EGP">${sym}</span></td>
+                        <td><span class="status-badge ${statusClass} lang-text" data-ar="${statusTextAr}" data-en="${statusTextEn}">${statusText}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                ${actions}
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            };
+
+            // Register tab triggers
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    activeFilter = tab.getAttribute('data-status');
+                    filterAndRenderOrders();
+                });
+            });
+
+            // Register search input triggers
+            const orderSearchInput = document.getElementById('order-search-input');
+            const topbarSearchInput = document.getElementById('topbar-search-input');
+            
+            const handleSearch = (e) => {
+                searchQuery = e.target.value;
+                // Sync both inputs if needed
+                if (orderSearchInput && e.target === topbarSearchInput) orderSearchInput.value = searchQuery;
+                if (topbarSearchInput && e.target === orderSearchInput) topbarSearchInput.value = searchQuery;
+                filterAndRenderOrders();
+            };
+
+            if (orderSearchInput) orderSearchInput.addEventListener('input', handleSearch);
+            if (topbarSearchInput) topbarSearchInput.addEventListener('input', handleSearch);
+
+            window.updateStatus = async (orderId, status) => {
+                try {
+                    const res = await fetch(`http://localhost:3000/api/orders/${orderId}/status`, {
+                        method: 'PATCH',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ status })
+                    });
+                    if (res.ok) {
+                        showToast(currentLang === 'ar' ? 'تم تحديث حالة الطلب بنجاح' : 'Order status updated successfully');
+                        fetchOrders();
+                    } else {
+                        showToast(currentLang === 'ar' ? 'فشل تحديث حالة الطلب' : 'Failed to update order status', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error updating status:', error);
+                    showToast(currentLang === 'ar' ? 'خطأ في الاتصال بالسيرفر' : 'Server connection error', 'error');
+                }
+            };
+
+            fetchOrders();
+        });
+    </script>
+</body>
+</html>

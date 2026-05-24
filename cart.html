@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PharmaLink - Cart</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="mobile-navbar">
+        <div
+          class="logo-text"
+          style="flex-direction: row; align-items: center; gap: 8px"
+        >
+          <svg
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            style="flex-shrink: 0"
+          >
+            <defs>
+              <radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%">
+                <stop offset="0%" stop-color="#d5c0ff" />
+                <stop offset="45%" stop-color="#8f7bff" />
+                <stop offset="100%" stop-color="#6846f0" />
+              </radialGradient>
+              <linearGradient
+                id="mpl-pillShine"
+                x1="0%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                <stop offset="60%" stop-color="rgba(255,255,255,0)" />
+              </linearGradient>
+              <linearGradient
+                id="mpl-ringGrad"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#a89cff" />
+                <stop offset="50%" stop-color="#6d4bff" />
+                <stop offset="100%" stop-color="#d4c2ff" />
+              </linearGradient>
+              <filter id="mpl-glow">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <g class="pill-group">
+              <rect
+                x="60"
+                y="60"
+                width="80"
+                height="100"
+                rx="40"
+                ry="40"
+                fill="url(#mpl-pillGrad)"
+                filter="url(#mpl-glow)"
+              />
+              <rect
+                x="60"
+                y="60"
+                width="80"
+                height="100"
+                rx="40"
+                ry="40"
+                fill="url(#mpl-pillShine)"
+                opacity="0.7"
+              />
+              <rect
+                x="91"
+                y="78"
+                width="18"
+                height="44"
+                rx="4"
+                fill="white"
+                opacity="0.95"
+              />
+              <rect
+                x="78"
+                y="91"
+                width="44"
+                height="18"
+                rx="4"
+                fill="white"
+                opacity="0.95"
+              />
+            </g>
+            <g class="orbit-ring">
+              <ellipse
+                cx="100"
+                cy="115"
+                rx="60"
+                ry="20"
+                fill="none"
+                stroke="url(#mpl-ringGrad)"
+                stroke-width="7"
+                stroke-dasharray="94 94"
+                stroke-dashoffset="94"
+                filter="url(#mpl-glow)"
+              />
+            </g>
+            <circle cx="158" cy="72" r="14" fill="#8f7bff" />
+            <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)" />
+          </svg>
+          <span class="logo-title" style="font-size: 16px">PharmaLink</span>
+        </div>
+        <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+      </div>
+
+      <aside class="sidebar">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <svg
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+              width="44"
+              height="44"
+            >
+              <defs>
+                <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#d5c0ff" />
+                  <stop offset="45%" stop-color="#8f7bff" />
+                  <stop offset="100%" stop-color="#6846f0" />
+                </radialGradient>
+                <linearGradient
+                  id="spl-pillShine"
+                  x1="0%"
+                  y1="0%"
+                  x2="0%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+                  <stop offset="60%" stop-color="rgba(255,255,255,0)" />
+                </linearGradient>
+                <linearGradient
+                  id="spl-ringGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="#a89cff" />
+                  <stop offset="50%" stop-color="#6d4bff" />
+                  <stop offset="100%" stop-color="#d4c2ff" />
+                </linearGradient>
+                <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                  <stop offset="0%" stop-color="#f3e4ff" />
+                  <stop offset="50%" stop-color="#8f7bff" />
+                  <stop offset="100%" stop-color="#5e3cff" />
+                </radialGradient>
+                <linearGradient
+                  id="spl-leafGrad"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
+                  <stop offset="0%" stop-color="rgba(171,146,255,0.34)" />
+                  <stop offset="100%" stop-color="rgba(111,85,255,0)" />
+                </linearGradient>
+                <filter id="spl-glow">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <g class="pill-group">
+                <rect
+                  x="60"
+                  y="60"
+                  width="80"
+                  height="100"
+                  rx="40"
+                  ry="40"
+                  fill="url(#spl-pillGrad)"
+                  filter="url(#spl-glow)"
+                />
+                <rect
+                  x="60"
+                  y="60"
+                  width="80"
+                  height="100"
+                  rx="40"
+                  ry="40"
+                  fill="url(#spl-pillShine)"
+                  opacity="0.7"
+                />
+                <path
+                  d="M60,110 Q55,80 80,65 Q65,90 70,110 Z"
+                  fill="url(#spl-leafGrad)"
+                  opacity="0.6"
+                />
+                <path
+                  d="M140,110 Q145,80 120,65 Q135,90 130,110 Z"
+                  fill="url(#spl-leafGrad)"
+                  opacity="0.4"
+                />
+                <line
+                  x1="60"
+                  y1="110"
+                  x2="140"
+                  y2="110"
+                  stroke="rgba(255,255,255,0.35)"
+                  stroke-width="1.5"
+                />
+                <rect
+                  x="91"
+                  y="78"
+                  width="18"
+                  height="44"
+                  rx="4"
+                  fill="white"
+                  opacity="0.95"
+                />
+                <rect
+                  x="78"
+                  y="91"
+                  width="44"
+                  height="18"
+                  rx="4"
+                  fill="white"
+                  opacity="0.95"
+                />
+              </g>
+              <g class="orbit-ring">
+                <ellipse
+                  cx="100"
+                  cy="115"
+                  rx="60"
+                  ry="20"
+                  fill="none"
+                  stroke="url(#spl-ringGrad)"
+                  stroke-width="7"
+                  stroke-dasharray="94 94"
+                  stroke-dashoffset="0"
+                  opacity="0.5"
+                />
+                <ellipse
+                  cx="100"
+                  cy="115"
+                  rx="60"
+                  ry="20"
+                  fill="none"
+                  stroke="url(#spl-ringGrad)"
+                  stroke-width="7"
+                  stroke-dasharray="94 94"
+                  stroke-dashoffset="94"
+                  filter="url(#spl-glow)"
+                />
+              </g>
+              <circle
+                cx="158"
+                cy="72"
+                r="14"
+                fill="url(#spl-sphereGrad)"
+                filter="url(#spl-glow)"
+              />
+              <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">PharmaLink</span>
+            <span
+              class="logo-subtitle lang-text"
+              data-ar="صيدلية رقمية"
+              data-en="Digital Pharmacy"
+              >صيدلية رقمية</span
+            >
+          </div>
+        </div>
+        <nav class="nav-menu">
+          <a href="index.html" class="nav-item">
+            <i class="ph ph-house"></i>
+            <span class="lang-text" data-ar="الرئيسية" data-en="Home"
+              >الرئيسية</span
+            >
+          </a>
+          <a href="search.html" class="nav-item">
+            <i class="ph ph-magnifying-glass"></i>
+            <span class="lang-text" data-ar="بحث" data-en="Search">بحث</span>
+          </a>
+          <a href="cart.html" class="nav-item active">
+            <i class="ph ph-shopping-cart"></i>
+            <span class="lang-text" data-ar="السلة" data-en="Cart">السلة</span>
+          </a>
+          <a href="Orders Tracking Page.html" class="nav-item">
+            <i class="ph ph-package"></i>
+            <span class="lang-text" data-ar="طلباتي" data-en="Orders"
+              >طلباتي</span
+            >
+          </a>
+          <a href="notifications.html" class="nav-item">
+            <i class="ph ph-bell"></i>
+            <span class="lang-text" data-ar="الإشعارات" data-en="Notifications"
+              >الإشعارات</span
+            >
+          </a>
+          <a href="Profile Page.html" class="nav-item">
+            <i class="ph ph-user"></i>
+            <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile"
+              >الملف الشخصي</span
+            >
+          </a>
+          <a href="#" class="nav-item logout-nav">
+            <i class="ph ph-sign-out"></i>
+            <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout"
+              >تسجيل خروج</span
+            >
+          </a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <h1
+            class="page-title lang-text"
+            data-ar="سلة التسوق"
+            data-en="Shopping Cart"
+          >
+            سلة التسوق
+          </h1>
+          <div class="user-profile">
+            <button
+              id="lang-toggle"
+              style="
+                background: var(--bg-color);
+                border: 1px solid var(--border-color);
+                padding: 8px 12px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                font-family: inherit;
+              "
+            >
+              EN
+            </button>
+          </div>
+        </header>
+        <div class="cart-layout">
+          <div class="cart-items-list">
+            <div class="cart-item">
+              <button class="delete-btn"><i class="ph ph-trash"></i></button>
+              <img
+                src="assets/images/panadol.png"
+                alt="Panadol Extra"
+                class="item-image"
+              />
+              <div class="item-details">
+                <div class="item-title">Panadol Extra</div>
+                <div
+                  class="item-subtitle lang-text"
+                  data-ar="صيدلية النهدي"
+                  data-en="Nahdi Pharmacy"
+                >
+                  صيدلية النهدي
+                </div>
+                <div class="item-quantity">
+                  <button class="qty-btn" onclick="updateQty(this, -1)">
+                    <i class="ph ph-minus"></i>
+                  </button>
+                  <span class="qty-value">2</span>
+                  <button class="qty-btn" onclick="updateQty(this, 1)">
+                    <i class="ph ph-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="item-price-area">
+                <div class="price-main">
+                  50
+                  <span
+                    class="currency-symbol"
+                    style="
+                      font-size: 14px;
+                      font-weight: normal;
+                      margin-top: 5px;
+                    "
+                    >جنيه</span
+                  >
+                </div>
+                <div class="price-sub" data-price="25">
+                  <span
+                    class="lang-text"
+                    data-ar="25 جنيه / حبة"
+                    data-en="25 EGP / pill"
+                    >25 جنيه / حبة</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="summary-widgets">
+            <div class="widget-card">
+              <h3
+                class="widget-title lang-text"
+                data-ar="ملخص الطلب"
+                data-en="Order Summary"
+              >
+                ملخص الطلب
+              </h3>
+              <div class="summary-row">
+                <span
+                  class="lang-text"
+                  data-ar="المجموع الفرعي"
+                  data-en="Subtotal"
+                  >المجموع الفرعي</span
+                >
+                <span
+                  style="
+                    font-weight: 600;
+                    color: var(--text-main);
+                    direction: ltr;
+                  "
+                  >100 <span class="currency-symbol">جنيه</span></span
+                >
+              </div>
+              <div class="summary-row">
+                <span
+                  class="lang-text"
+                  data-ar="رسوم التوصيل"
+                  data-en="Delivery Fee"
+                  >رسوم التوصيل</span
+                >
+                <span
+                  style="
+                    font-weight: 600;
+                    color: var(--text-main);
+                    direction: ltr;
+                  "
+                  data-price="15"
+                  >15 <span class="currency-symbol">جنيه</span></span
+                >
+              </div>
+              <div class="summary-divider"></div>
+              <div class="summary-total">
+                <span class="lang-text" data-ar="الإجمالي" data-en="Total"
+                  >الإجمالي</span
+                >
+                <span class="total-price" style="direction: ltr"
+                  >115 <span class="currency-symbol">جنيه</span></span
+                >
+              </div>
+              <button
+                class="btn-checkout lang-text"
+                data-ar="إتمام الطلب"
+                data-en="Checkout"
+                onclick="window.location.href = 'checkout.html'"
+              >
+                إتمام الطلب
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

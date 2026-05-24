@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Add Medicine</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pharmacy.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad-am" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-ringGrad-am" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow-am"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad-am)" filter="url(#mpl-glow-am)"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad-am)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow-am)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+
+        <aside class="sidebar">
+            <div class="logo-container">
+                                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="لوحة تحكم الصيدلية" data-en="Pharmacy Dashboard">لوحة
+                        تحكم الصيدلية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="pharmacy-dashboard.html" class="nav-item ">
+                    <i class="ph ph-squares-four"></i>
+                    <span class="lang-text" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
+                </a>
+                <a href="pharmacy-orders.html" class="nav-item ">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="إدارة الطلبات" data-en="Orders Management">إدارة الطلبات</span>
+                </a>
+                <a href="pharmacy-inventory.html" class="nav-item ">
+                    <i class="ph ph-stack"></i>
+                    <span class="lang-text" data-ar="المخزون" data-en="Inventory">المخزون</span>
+                </a>
+                <a href="pharmacy-add-medicine.html" class="nav-item active">
+                    <i class="ph ph-pill"></i>
+                    <span class="lang-text" data-ar="إضافة دواء" data-en="Add Medicine">إضافة دواء</span>
+                </a>
+                <a href="pharmacy-analytics.html" class="nav-item ">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span class="lang-text" data-ar="التحليلات" data-en="Analytics">التحليلات</span>
+                </a>
+                <a href="pharmacy-notifications.html" class="nav-item">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="pharmacy-profile.html" class="nav-item ">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" class="lang-text" data-ar="ابحث..." data-en="Search..." placeholder="ابحث...">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle"
+                        style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+                </div>
+            </header>
+
+            <div class="page-header mb-4">
+                <h2 class="page-title lang-text" data-ar="إضافة دواء جديد" data-en="Add New Medicine"
+                    style="margin-bottom:0;">إضافة دواء جديد</h2>
+            </div>
+
+            <div class="widget-card">
+                <form class="medicine-form" id="add-med-form">
+                    <div class="form-grid-2">
+                        <div class="form-group" style="position:relative;">
+                            <label class="lang-text" data-ar="الاسم العلمي / التجاري" data-en="Medicine Name">الاسم
+                                العلمي / التجاري</label>
+                            <input type="text" id="med-name" class="form-control lang-text" data-ar="مثال: Panadol Extra"
+                                data-en="e.g., Panadol Extra" placeholder="مثال: Panadol Extra" required autocomplete="off">
+                            <div class="suggestions-list" id="suggestions-list"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lang-text" data-ar="الفئة" data-en="Category">الفئة</label>
+                            <select id="med-category" class="form-control" required>
+                                <option value="مسكنات" class="lang-text" data-ar="مسكنات" data-en="Painkillers">مسكنات</option>
+                                <option value="فيتامينات" class="lang-text" data-ar="فيتامينات" data-en="Vitamins">فيتامينات</option>
+                                <option value="مضادات حيوية" class="lang-text" data-ar="مضادات حيوية" data-en="Antibiotics">مضادات حيوية</option>
+                                <option value="عناية شخصية" class="lang-text" data-ar="عناية شخصية" data-en="Personal Care">عناية شخصية</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="lang-text" data-ar="السعر" data-en="Price">السعر</label>
+                            <div class="price-input-wrapper" style="position:relative;">
+                                <input type="number" id="med-price" class="form-control lang-text" data-ar="0.00" data-en="0.00"
+                                    placeholder="0.00" style="padding-left: 50px;" required>
+                                <span class="currency-symbol lang-text" data-ar="جنيه" data-en="EGP"
+                                    style="position:absolute; left:15px; top:50%; transform:translateY(-50%); color:var(--text-muted);">جنيه</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lang-text" data-ar="الكمية المتوفرة" data-en="Initial Stock">الكمية
+                                المتوفرة</label>
+                            <input type="number" id="med-stock" class="form-control lang-text" data-ar="0" data-en="0" placeholder="0" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="lang-text" data-ar="وصف الدواء" data-en="Description">وصف الدواء</label>
+                        <textarea id="med-desc" class="form-control lang-text" rows="4"
+                            data-ar="اكتب وصفاً مختصراً للدواء ودواعي الاستعمال..."
+                            data-en="Write a short description..."
+                            placeholder="اكتب وصفاً مختصراً للدواء ودواعي الاستعمال..."></textarea>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="lang-text" data-ar="صورة المنتج" data-en="Product Image">صورة المنتج</label>
+                        <div class="image-upload-area">
+                            <i class="ph ph-upload-simple"
+                                style="font-size:32px; color:var(--text-muted); margin-bottom:10px;"></i>
+                            <p class="lang-text" data-ar="اضغط لرفع صورة أو اسحب الصورة هنا"
+                                data-en="Click to upload or drag image here">اضغط لرفع صورة أو اسحب الصورة هنا</p>
+                            <input type="file" style="display:none;" id="med-img" accept="image/*">
+                            <img class="image-preview" id="image-preview" src="" alt="Preview">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn-outline-custom lang-text" data-ar="إلغاء"
+                            data-en="Cancel">إلغاء</button>
+                        <button type="submit" class="btn-primary-custom lang-text" data-ar="حفظ الدواء"
+                            data-en="Save Medicine">حفظ الدواء</button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) return window.location.href = 'auth.html';
+
+            const parseJwt = (token) => {
+                try { return JSON.parse(atob(token.split('.')[1])); } catch (e) { return null; }
+            };
+            const decoded = parseJwt(token);
+            const pharmacyId = decoded ? decoded.id : null;
+            if (!pharmacyId) return;
+
+            const form = document.getElementById('add-med-form');
+            const nameInput = document.getElementById('med-name');
+            const suggestionsList = document.getElementById('suggestions-list');
+            const imgInput = document.getElementById('med-img');
+            const imgPreview = document.getElementById('image-preview');
+            const uploadArea = document.querySelector('.image-upload-area');
+            let imageBase64 = null;
+
+            uploadArea.addEventListener('click', (e) => {
+                if(e.target !== imgInput) imgInput.click();
+            });
+
+            imgInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => {
+                        imageBase64 = ev.target.result;
+                        imgPreview.src = imageBase64;
+                        imgPreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            let debounceTimer;
+            nameInput.addEventListener('input', (e) => {
+                clearTimeout(debounceTimer);
+                const keyword = e.target.value.trim();
+                
+                if (!keyword) {
+                    suggestionsList.style.display = 'none';
+                    return;
+                }
+
+                debounceTimer = setTimeout(async () => {
+                    try {
+                        const res = await fetch(`http://localhost:3000/api/medicines/suggestions?tradeName=${encodeURIComponent(keyword)}`);
+                        if (!res.ok) throw new Error('Search failed');
+                        const data = await res.json();
+                        
+                        suggestionsList.innerHTML = '';
+                        if (data.length > 0) {
+                            data.forEach(med => {
+                                const item = document.createElement('div');
+                                item.className = 'suggestion-item';
+                                item.innerHTML = `<div><strong>${med.tradeName}</strong> <br> <small style="color:var(--text-muted);">${med.scientificName || ''} - ${med.category || ''}</small></div>`;
+                                item.addEventListener('click', () => {
+                                    nameInput.value = med.tradeName;
+                                    
+                                    const catSelect = document.getElementById('med-category');
+                                    let foundCat = Array.from(catSelect.options).find(opt => opt.value === med.category || opt.text === med.category);
+                                    if(foundCat) catSelect.value = foundCat.value;
+                                    
+                                    document.getElementById('med-price').value = med.price || '';
+                                    document.getElementById('med-desc').value = med.description || '';
+                                    suggestionsList.style.display = 'none';
+                                });
+                                suggestionsList.appendChild(item);
+                            });
+                            suggestionsList.style.display = 'block';
+                        } else {
+                            suggestionsList.style.display = 'none';
+                        }
+                    } catch (err) {
+                        console.error('Search error:', err);
+                    }
+                }, 300);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!nameInput.contains(e.target) && !suggestionsList.contains(e.target)) {
+                    suggestionsList.style.display = 'none';
+                }
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const data = {
+                    name: document.getElementById('med-name').value,
+                    therapeuticCategory: document.getElementById('med-category').value,
+                    price: Number(document.getElementById('med-price').value),
+                    stock: Number(document.getElementById('med-stock').value),
+                    description: document.getElementById('med-desc').value,
+                    pharmacy: pharmacyId,
+                    manufacturer: 'Unknown', 
+                    dosageForm: 'Tablet' 
+                };
+
+                if (imageBase64) {
+                    data.images = [imageBase64];
+                }
+
+                try {
+                    const res = await fetch('http://localhost:3000/api/medicines', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (res.ok) {
+                        alert('تم إضافة الدواء بنجاح');
+                        window.location.href = 'pharmacy-inventory.html';
+                    } else {
+                        const error = await res.json();
+                        alert('خطأ: ' + (error.message || error.error));
+                    }
+                } catch (err) {
+                    console.error('Error adding medicine', err);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

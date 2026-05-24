@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Pharmacy Profile</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pharmacy.css">
+    <style>
+        .profile-tabs { display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; overflow-x: auto; }
+        .tab { padding: 10px 20px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+        .tab.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+        .tab:hover:not(.active) { color: var(--text-main); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(255,255,255,0.7)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></linearGradient><linearGradient id="mpl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad)" filter="url(#mpl-glow)"/><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillShine)" opacity="0.7"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="logo-container">
+                                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="لوحة تحكم الصيدلية" data-en="Pharmacy Dashboard">لوحة تحكم الصيدلية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="pharmacy-dashboard.html" class="nav-item ">
+                    <i class="ph ph-squares-four"></i>
+                    <span class="lang-text" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
+                </a>
+                <a href="pharmacy-orders.html" class="nav-item ">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="إدارة الطلبات" data-en="Orders Management">إدارة الطلبات</span>
+                </a>
+                <a href="pharmacy-inventory.html" class="nav-item ">
+                    <i class="ph ph-stack"></i>
+                    <span class="lang-text" data-ar="المخزون" data-en="Inventory">المخزون</span>
+                </a>
+                <a href="pharmacy-add-medicine.html" class="nav-item ">
+                    <i class="ph ph-pill"></i>
+                    <span class="lang-text" data-ar="إضافة دواء" data-en="Add Medicine">إضافة دواء</span>
+                </a>
+                <a href="pharmacy-analytics.html" class="nav-item ">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span class="lang-text" data-ar="التحليلات" data-en="Analytics">التحليلات</span>
+                </a>
+                <a href="pharmacy-notifications.html" class="nav-item">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="pharmacy-profile.html" class="nav-item active">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" class="lang-text" data-ar="ابحث..." data-en="Search..." placeholder="ابحث...">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle" style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+                </div>
+            </header>
+
+            <div class="page-header mb-4">
+                <h2 class="page-title lang-text" data-ar="ملف الصيدلية" data-en="Pharmacy Profile" style="margin: 0;">ملف الصيدلية</h2>
+            </div>
+
+            <div class="widget-card">
+                <div class="profile-tabs">
+                    <div class="tab active lang-text" data-ar="بيانات الصيدلية" data-en="Pharmacy Data" data-target="details">بيانات الصيدلية</div>
+                    <div class="tab lang-text" data-ar="أوقات العمل" data-en="Working Hours" data-target="working-hours">أوقات العمل</div>
+                </div>
+
+                <div class="tab-content active" id="details">
+                    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+                        <div style="width: 80px; height: 80px; background: var(--bg-color); border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 2px solid var(--primary-color);">
+                            <img id="profile-avatar" src="assets/images/pharmacy_logo.png" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2966/2966327.png'">
+                        </div>
+                        <button id="change-photo-btn" class="btn-outline-custom lang-text" data-ar="تغيير الشعار" data-en="Change Logo" style="padding: 8px 16px; font-size: 14px;">تغيير الشعار</button>
+                        <input type="file" id="profile-photo-input" style="display: none;" accept="image/*">
+                    </div>
+
+                    <div class="medicine-form">
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="اسم الصيدلية" data-en="Pharmacy Name">اسم الصيدلية</label>
+                                <input type="text" id="profile-name" class="form-control lang-text" data-ar="صيدلية النهدي" data-en="Nahdi Pharmacy" placeholder="صيدلية النهدي" value="">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="رقم الرخصة" data-en="License Number">رقم الرخصة</label>
+                                <input type="text" id="profile-license" class="form-control" value="" style="direction: ltr; text-align: right;">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="رقم التواصل" data-en="Contact Number">رقم التواصل</label>
+                                <input type="text" id="profile-phone" class="form-control" value="" style="direction: ltr; text-align: right;">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+                                <input type="email" id="profile-email" class="form-control" value="" style="direction: ltr; text-align: right;">
+                            </div>
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label class="lang-text" data-ar="عنوان الصيدلية" data-en="Pharmacy Address">عنوان الصيدلية</label>
+                                <input type="text" id="profile-address" class="form-control lang-text" data-ar="القاهرة، المعادي، شارع 9" data-en="Cairo, Maadi, Street 9" placeholder="عنوان الصيدلية" value="">
+                            </div>
+                        </div>
+                        <div style="margin-top: 24px;">
+                            <button id="save-details-btn" class="btn-primary-custom lang-text" data-ar="حفظ التغييرات" data-en="Save Changes">حفظ التغييرات</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="working-hours">
+                    <div class="medicine-form">
+                        <div class="form-grid-2">
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="من الساعة" data-en="From Time">من الساعة</label>
+                                <input type="time" id="profile-time-from" class="form-control" value="09:00">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="إلى الساعة" data-en="To Time">إلى الساعة</label>
+                                <input type="time" id="profile-time-to" class="form-control" value="23:00">
+                            </div>
+                            <div class="form-group">
+                                <label class="lang-text" data-ar="حالة الصيدلية" data-en="Pharmacy Status">حالة الصيدلية</label>
+                                <select id="profile-status" class="form-control">
+                                    <option value="مفتوحة الآن" class="lang-text" data-ar="مفتوحة الآن" data-en="Open Now">مفتوحة الآن</option>
+                                    <option value="مغلقة" class="lang-text" data-ar="مغلقة" data-en="Closed">مغلقة</option>
+                                    <option value="تعمل 24 ساعة" class="lang-text" data-ar="تعمل 24 ساعة" data-en="24/7 Open">تعمل 24 ساعة</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-top: 24px;">
+                            <button id="save-hours-btn" class="btn-primary-custom lang-text" data-ar="حفظ أوقات العمل" data-en="Save Working Hours">حفظ أوقات العمل</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) return window.location.href = 'auth.html';
+
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.target).classList.add('active');
+                });
+            });
+
+            let currentPhotoBase64 = null;
+
+            // Fetch profile
+            try {
+                const res = await fetch('http://localhost:3000/api/users/profile', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('profile-name').value = data.name || '';
+                    document.getElementById('profile-email').value = data.email || '';
+                    document.getElementById('profile-phone').value = data.phone || '';
+                    document.getElementById('profile-address').value = data.address || '';
+                    
+                    if (data.profilePhoto) {
+                        currentPhotoBase64 = data.profilePhoto;
+                        document.getElementById('profile-avatar').src = data.profilePhoto;
+                    }
+                    
+                    // Fields that might need additional get request if not returned in getUserProfile
+                    if(data.licenseNumber) document.getElementById('profile-license').value = data.licenseNumber;
+                    if(data.workingHours) {
+                        if(data.workingHours.from) document.getElementById('profile-time-from').value = data.workingHours.from;
+                        if(data.workingHours.to) document.getElementById('profile-time-to').value = data.workingHours.to;
+                    }
+                    if(data.pharmacyStatus) document.getElementById('profile-status').value = data.pharmacyStatus;
+                }
+            } catch(e) {
+                console.error(e);
+            }
+
+            const updateProfile = async (updates) => {
+                try {
+                    const res = await fetch('http://localhost:3000/api/users/profile', {
+                        method: 'PUT',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(updates)
+                    });
+                    if (res.ok) {
+                        const isAr = localStorage.getItem('currentLang') === 'ar' || document.documentElement.lang === 'ar';
+                        showToast(isAr ? 'تم الحفظ بنجاح 🎉' : 'Saved successfully 🎉');
+                    } else {
+                        const isAr = localStorage.getItem('currentLang') === 'ar' || document.documentElement.lang === 'ar';
+                        showToast(isAr ? 'حدث خطأ أثناء الحفظ' : 'Error saving profile', 'error');
+                    }
+                } catch(e) {
+                    console.error(e);
+                    const isAr = localStorage.getItem('currentLang') === 'ar' || document.documentElement.lang === 'ar';
+                    showToast(isAr ? 'فشل الاتصال بالسيرفر' : 'Server connection error', 'error');
+                }
+            };
+
+            document.getElementById('save-details-btn').addEventListener('click', () => {
+                updateProfile({
+                    name: document.getElementById('profile-name').value,
+                    email: document.getElementById('profile-email').value,
+                    phone: document.getElementById('profile-phone').value,
+                    address: document.getElementById('profile-address').value,
+                    licenseNumber: document.getElementById('profile-license').value,
+                    profilePhoto: currentPhotoBase64
+                });
+            });
+
+            // Photo upload logic
+            const changePhotoBtn = document.getElementById('change-photo-btn');
+            const photoInput = document.getElementById('profile-photo-input');
+            const avatarImg = document.getElementById('profile-avatar');
+
+            if (changePhotoBtn && photoInput) {
+                changePhotoBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    photoInput.click();
+                });
+
+                photoInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            currentPhotoBase64 = event.target.result;
+                            avatarImg.src = currentPhotoBase64;
+                            const isAr = localStorage.getItem('currentLang') === 'ar' || document.documentElement.lang === 'ar';
+                            showToast(isAr ? 'تم تغيير الشعار! اضغط حفظ التغييرات.' : 'Logo changed! Click Save Changes.', 'success');
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            document.getElementById('save-hours-btn').addEventListener('click', () => {
+                updateProfile({
+                    workingHours: {
+                        from: document.getElementById('profile-time-from').value,
+                        to: document.getElementById('profile-time-to').value
+                    },
+                    pharmacyStatus: document.getElementById('profile-status').value
+                });
+            });
+        });
+    </script>
+</body>
+</html>

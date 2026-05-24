@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaLink - Inventory</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/pharmacy.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="mobile-navbar">
+            <div class="logo-text" style="flex-direction:row; align-items:center; gap: 8px;">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="30" height="30" style="flex-shrink:0;"><defs><radialGradient id="mpl-pillGrad" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#d5c0ff"/><stop offset="45%" stop-color="#8f7bff"/><stop offset="100%" stop-color="#6846f0"/></radialGradient><linearGradient id="mpl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgba(255,255,255,0.7)"/><stop offset="60%" stop-color="rgba(255,255,255,0)"/></linearGradient><linearGradient id="mpl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a89cff"/><stop offset="50%" stop-color="#6d4bff"/><stop offset="100%" stop-color="#d4c2ff"/></linearGradient><filter id="mpl-glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g class="pill-group"><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillGrad)" filter="url(#mpl-glow)"/><rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#mpl-pillShine)" opacity="0.7"/><rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/><rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/></g><g class="orbit-ring"><ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#mpl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#mpl-glow)"/></g><circle cx="158" cy="72" r="14" fill="#8f7bff"/><circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/></svg>
+                <span class="logo-title" style="font-size:16px;">PharmaLink</span>
+            </div>
+            <button class="mobile-menu-btn"><i class="ph ph-list"></i></button>
+        </div>
+        
+        <aside class="sidebar">
+            <div class="logo-container">
+                                <div class="logo-icon">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+                        <defs>
+                            <radialGradient id="spl-pillGrad" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#d5c0ff"/>
+                                <stop offset="45%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#6846f0"/>
+                            </radialGradient>
+                            <linearGradient id="spl-pillShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="60%" stop-color="rgba(255,255,255,0)"/>
+                            </linearGradient>
+                            <linearGradient id="spl-ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a89cff"/>
+                                <stop offset="50%" stop-color="#6d4bff"/>
+                                <stop offset="100%" stop-color="#d4c2ff"/>
+                            </linearGradient>
+                            <radialGradient id="spl-sphereGrad" cx="35%" cy="30%" r="65%">
+                                <stop offset="0%" stop-color="#f3e4ff"/>
+                                <stop offset="50%" stop-color="#8f7bff"/>
+                                <stop offset="100%" stop-color="#5e3cff"/>
+                            </radialGradient>
+                            <linearGradient id="spl-leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(171,146,255,0.34)"/>
+                                <stop offset="100%" stop-color="rgba(111,85,255,0)"/>
+                            </linearGradient>
+                            <filter id="spl-glow">
+                                <feGaussianBlur stdDeviation="3" result="blur"/>
+                                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <g class="pill-group">
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillGrad)" filter="url(#spl-glow)"/>
+                            <rect x="60" y="60" width="80" height="100" rx="40" ry="40" fill="url(#spl-pillShine)" opacity="0.7"/>
+                            <path d="M60,110 Q55,80 80,65 Q65,90 70,110 Z" fill="url(#spl-leafGrad)" opacity="0.6"/>
+                            <path d="M140,110 Q145,80 120,65 Q135,90 130,110 Z" fill="url(#spl-leafGrad)" opacity="0.4"/>
+                            <line x1="60" y1="110" x2="140" y2="110" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+                            <rect x="91" y="78" width="18" height="44" rx="4" fill="white" opacity="0.95"/>
+                            <rect x="78" y="91" width="44" height="18" rx="4" fill="white" opacity="0.95"/>
+                        </g>
+                        <g class="orbit-ring">
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="0" opacity="0.5"/>
+                            <ellipse cx="100" cy="115" rx="60" ry="20" fill="none" stroke="url(#spl-ringGrad)" stroke-width="7" stroke-dasharray="94 94" stroke-dashoffset="94" filter="url(#spl-glow)"/>
+                        </g>
+                        <circle cx="158" cy="72" r="14" fill="url(#spl-sphereGrad)" filter="url(#spl-glow)"/>
+                        <circle cx="153" cy="67" r="5" fill="rgba(255,255,255,0.55)"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">PharmaLink</span>
+                    <span class="logo-subtitle lang-text" data-ar="لوحة تحكم الصيدلية" data-en="Pharmacy Dashboard">لوحة تحكم الصيدلية</span>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="pharmacy-dashboard.html" class="nav-item ">
+                    <i class="ph ph-squares-four"></i>
+                    <span class="lang-text" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</span>
+                </a>
+                <a href="pharmacy-orders.html" class="nav-item ">
+                    <i class="ph ph-package"></i>
+                    <span class="lang-text" data-ar="إدارة الطلبات" data-en="Orders Management">إدارة الطلبات</span>
+                </a>
+                <a href="pharmacy-inventory.html" class="nav-item active">
+                    <i class="ph ph-stack"></i>
+                    <span class="lang-text" data-ar="المخزون" data-en="Inventory">المخزون</span>
+                </a>
+                <a href="pharmacy-add-medicine.html" class="nav-item ">
+                    <i class="ph ph-pill"></i>
+                    <span class="lang-text" data-ar="إضافة دواء" data-en="Add Medicine">إضافة دواء</span>
+                </a>
+                <a href="pharmacy-analytics.html" class="nav-item ">
+                    <i class="ph ph-chart-line-up"></i>
+                    <span class="lang-text" data-ar="التحليلات" data-en="Analytics">التحليلات</span>
+                </a>
+                <a href="pharmacy-notifications.html" class="nav-item">
+                    <i class="ph ph-bell"></i>
+                    <span class="lang-text" data-ar="الإشعارات" data-en="Notifications">الإشعارات</span>
+                </a>
+                <a href="pharmacy-profile.html" class="nav-item ">
+                    <i class="ph ph-user"></i>
+                    <span class="lang-text" data-ar="الملف الشخصي" data-en="Profile">الملف الشخصي</span>
+                </a>
+                <a href="#" class="nav-item logout-nav">
+                    <i class="ph ph-sign-out"></i>
+                    <span class="lang-text" data-ar="تسجيل خروج" data-en="Logout">تسجيل خروج</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar-top">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="text" class="lang-text" data-ar="ابحث..." data-en="Search..." placeholder="ابحث...">
+                </div>
+                <div class="user-profile">
+                    <button id="lang-toggle" style="background:var(--bg-color); border:1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; cursor:pointer; font-weight:bold; font-family:inherit;">EN</button>
+
+                </div>
+            </header>
+
+            <div class="page-header flex-between mb-4">
+                <h2 class="page-title lang-text" data-ar="إدارة المخزون" data-en="Inventory Management" style="margin-bottom:0;">إدارة المخزون</h2>
+                <div class="header-actions-flex">
+                    <div class="search-bar-top" style="width:250px;">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" class="lang-text" data-ar="بحث عن دواء..." data-en="Search medicine..." placeholder="بحث عن دواء...">
+                    </div>
+                    <a href="pharmacy-add-medicine.html" class="btn-primary-custom lang-text" data-ar="+ إضافة دواء" data-en="+ Add Medicine">+ إضافة دواء</a>
+                </div>
+            </div>
+
+            <div class="widget-card">
+                <div class="table-responsive">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th class="lang-text" data-ar="صورة" data-en="Image">صورة</th>
+                                <th class="lang-text" data-ar="اسم الدواء" data-en="Medicine Name">اسم الدواء</th>
+                                <th class="lang-text" data-ar="الفئة" data-en="Category">الفئة</th>
+                                <th class="lang-text" data-ar="السعر" data-en="Price">السعر</th>
+                                <th class="lang-text" data-ar="الكمية المتوفرة" data-en="Stock">الكمية المتوفرة</th>
+                                <th class="lang-text" data-ar="الحالة" data-en="Status">الحالة</th>
+                                <th class="lang-text" data-ar="الإجراءات" data-en="Actions">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-tbody">
+                            <tr>
+                                <td colspan="7" style="text-align:center;">جاري التحميل...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('userToken');
+            if (!token) return window.location.href = 'auth.html';
+
+            const parseJwt = (token) => {
+                try { return JSON.parse(atob(token.split('.')[1])); } catch (e) { return null; }
+            };
+            const decoded = parseJwt(token);
+            const pharmacyId = decoded ? decoded.id : null;
+            if (!pharmacyId) return;
+
+            const fetchInventory = async () => {
+                try {
+                    const res = await fetch(`http://localhost:3000/api/medicines/pharmacy/${pharmacyId}`);
+                    if (res.ok) {
+                        const medicines = await res.json();
+                        renderInventory(medicines);
+                    }
+                } catch (error) {
+                    console.error('Error fetching inventory:', error);
+                }
+            };
+
+            const renderInventory = (medicines) => {
+                const tbody = document.getElementById('inventory-tbody');
+                tbody.innerHTML = '';
+                if (medicines.length === 0) {
+                    const emptyText = currentLang === 'ar' ? 'لا يوجد أدوية في المخزون' : 'No medicines in inventory';
+                    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;" class="lang-text" data-ar="لا يوجد أدوية في المخزون" data-en="No medicines in inventory">${emptyText}</td></tr>`;
+                    return;
+                }
+                medicines.forEach(med => {
+                    const tr = document.createElement('tr');
+                    
+                    let statusClass = 'status-completed';
+                    let statusTextAr = 'متوفر';
+                    let statusTextEn = 'In Stock';
+                    
+                    if (med.stock === 0) {
+                        statusClass = 'status-danger';
+                        statusTextAr = 'غير متوفر';
+                        statusTextEn = 'Out of Stock';
+                    } else if (med.stock < 10) {
+                        statusClass = 'status-warning';
+                        statusTextAr = 'على وشك النفاذ';
+                        statusTextEn = 'Low Stock';
+                    }
+
+                    const sym = currentLang === 'ar' ? 'جنيه' : 'EGP';
+                    const statusText = currentLang === 'ar' ? statusTextAr : statusTextEn;
+
+                    tr.innerHTML = `
+                        <td><img src="${(med.images && med.images.length > 0) ? med.images[0] : 'https://cdn-icons-png.flaticon.com/512/2966/2966327.png'}" style="width:40px; height:40px; border-radius:8px; object-fit:cover;"></td>
+                        <td>${med.name}</td>
+                        <td>${med.therapeuticCategory || '-'}</td>
+                        <td>${med.price} <span class="currency-symbol lang-text" data-ar="جنيه" data-en="EGP">${sym}</span></td>
+                        <td>
+                            <div class="stock-update">
+                                <button class="qty-btn" onclick="updateStock('${med._id}', ${med.stock - 1})">-</button>
+                                <input type="number" value="${med.stock}" class="qty-input" onchange="updateStock('${med._id}', this.value)">
+                                <button class="qty-btn" onclick="updateStock('${med._id}', ${med.stock + 1})">+</button>
+                            </div>
+                        </td>
+                        <td><span class="status-badge ${statusClass} lang-text" data-ar="${statusTextAr}" data-en="${statusTextEn}">${statusText}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn-action btn-reject" onclick="deleteMedicine('${med._id}')" title="Delete"><i class="ph ph-trash"></i></button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            };
+
+            window.updateStock = async (id, newStock) => {
+                if(newStock < 0) return;
+                try {
+                    const res = await fetch(`http://localhost:3000/api/medicines/${id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ stock: Number(newStock) })
+                    });
+                    if (res.ok) fetchInventory();
+                } catch (error) {
+                    console.error('Error updating stock', error);
+                }
+            };
+
+            window.deleteMedicine = async (id) => {
+                const confirmMsg = currentLang === 'ar' ? 'هل أنت متأكد من حذف هذا الدواء؟' : 'Are you sure you want to delete this medicine?';
+                if(!confirm(confirmMsg)) return;
+                try {
+                    const res = await fetch(`http://localhost:3000/api/medicines/${id}`, { method: 'DELETE' });
+                    if (res.ok) fetchInventory();
+                } catch (error) {
+                    console.error('Error deleting medicine', error);
+                }
+            };
+
+            fetchInventory();
+        });
+    </script>
+</body>
+</html>

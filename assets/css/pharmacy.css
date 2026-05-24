@@ -1,0 +1,444 @@
+/* Pharmacy Dashboard Specific Styles */
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mb-3 { margin-bottom: 16px; }
+.mb-4 { margin-bottom: 24px; }
+
+/* Dashboard Stats */
+.dashboard-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.stat-info {
+    flex-grow: 1;
+}
+
+.stat-title {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    display: block;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.dashboard-grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+}
+
+/* Custom Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th {
+    text-align: right;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+
+.custom-table td {
+    padding: 16px;
+    font-size: 14px;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.custom-table tbody tr:hover {
+    background: rgba(0,0,0,0.01);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-pending { background: rgba(255, 204, 0, 0.15); color: #d9a400; }
+.status-processing { background: rgba(63, 0, 231, 0.15); color: var(--primary-color); }
+.status-ready { background: rgba(233, 30, 99, 0.15); color: var(--accent-color); }
+.status-completed { background: rgba(52, 199, 89, 0.15); color: var(--success-color); }
+.status-warning { background: rgba(255, 149, 0, 0.15); color: #ff9500; }
+.status-danger { background: rgba(255, 59, 48, 0.15); color: var(--danger-color); }
+
+/* Quick Actions */
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.quick-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.quick-action-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.qa-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.quick-action-btn:hover .qa-icon {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+/* Orders Tabs */
+.orders-tabs {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    border-radius: 20px;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.tab-btn:hover {
+    background: var(--bg-color);
+}
+
+.tab-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+    background: var(--bg-color);
+    color: var(--text-muted);
+}
+
+.btn-accept:hover { background: var(--success-color); color: white; }
+.btn-reject:hover { background: var(--danger-color); color: white; }
+.btn-view:hover { background: var(--primary-color); color: white; }
+.btn-ready {
+    background: var(--accent-gradient);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+}
+.btn-ready:hover { opacity: 0.9; }
+
+/* Stock Update */
+.stock-update {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 4px;
+    width: fit-content;
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    background: none;
+    font-weight: 600;
+    outline: none;
+}
+
+/* Analytics */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+}
+
+.top-selling-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.top-selling-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: var(--bg-color);
+    border-radius: 12px;
+}
+
+.ts-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ts-rank {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-muted);
+    width: 24px;
+}
+
+.ts-text .ts-name {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.ts-text .ts-cat {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.ts-sales {
+    text-align: left;
+}
+
+.ts-count {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.ts-amount {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Forms */
+.medicine-form .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-control {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-color);
+    color: var(--text-main);
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+}
+
+.image-upload-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--bg-color);
+    transition: all 0.2s;
+}
+
+.image-upload-area:hover {
+    border-color: var(--primary-color);
+    background: rgba(63, 0, 231, 0.02);
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.btn-primary-custom, .btn-outline-custom {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-primary-custom {
+    background: var(--primary-gradient);
+    color: white;
+}
+
+.btn-primary-custom:hover {
+    opacity: 0.9;
+}
+
+.btn-outline-custom {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.btn-outline-custom:hover {
+    background: var(--bg-color);
+}
+
+.header-actions-flex {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .dashboard-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .medicine-form .form-grid-2 {
+        grid-template-columns: 1fr;
+    }
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Autocomplete Suggestions */
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
+    box-shadow: var(--shadow-sm);
+    margin-top: 4px;
+}
+.suggestion-item {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover { background: rgba(63,0,231,0.05); }
+
+/* Image Preview */
+.image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 8px;
+    display: none;
+    margin-top: 10px;
+    object-fit: contain;
+}
